@@ -1,0 +1,12 @@
+pipeline {
+    agent any 
+    stages {
+        stage('Build') { 
+            steps {
+                echo "Pipeline"
+                echo "This is Build step"
+                ls -la && cat /etc/issue && /etc/init.d/jenkins status
+            }
+        }
+    }
+}
