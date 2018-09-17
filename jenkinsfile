@@ -1,0 +1,35 @@
+node {
+    // This checks to make sure the pipeline has been supplied the correct parameters.
+    stage('Validation') {
+        println "Stage1:Validating"
+    }
+    //This will check the terraform code syntax
+    stage('Lint') {
+        println "Stage2:Validation"
+    }
+    //a compliance stub for future use
+    stage('Compliance') {
+         println "Stage3:Compliance"
+    }
+    //a security stub for future use
+    stage('Security') {
+        println "Stage4:Security"
+    }
+    //execute the terraform init stage
+    stage('Terraform-init') {
+        println "Stage5:Terraform-init"
+    }
+    //execute the terraform plan
+    stage('Terraform-plan') {
+        println "Stage6:Terraform-plan"
+    }
+    //execute the terraform apply
+    stage('Terraform-apply') {
+        println "Stage7:Terraform-apply"
+    }
+    //produce a report for display regarding the results
+    stage('Report'){
+        println "Stage8:"Reporting results"
+    }
+}
+
