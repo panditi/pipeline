@@ -2,6 +2,19 @@ node {
     // This checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
         println "Stage1:Validating"
+        //github_org
+
+        //github_repo
+
+        //github_repo_path
+
+        //github_repo_branch
+
+        //aws_account_number
+
+        //aws_account_alias
+
+        //environment
     }
     //This will check the terraform code syntax
     stage('Lint') {
