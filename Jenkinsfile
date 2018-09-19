@@ -3,14 +3,14 @@ node {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
     }
+    def credentialsId = System.getProperty("credentialsId")
     // This checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
         println "Stage1:Validating"
          //branch name from Jenkins environment variables
-  sh 'printenv'
+  //sh 'printenv'
      echo "My branch is: ${env.BRANCH_NAME}"
- 
-  //echo env.getEnvironment()
+
      if (env.BRANCH_NAME == 'master') 
         {
    
@@ -21,7 +21,9 @@ node {
      else {
           echo 'I execute elsewhere'
         }
-  //echo "My branch is: ${env.BRANCH_NAME}"
+         git branch: '${branch}',
+              credentialsId: '${credentialsId}'
+  
         //github_org
 
         //github_repo
