@@ -22,6 +22,9 @@ node {
      else {
           echo 'I execute elsewhere'
         }
+       checkout scm
+       echo "Done checkout scm"
+       scm.getUserRemoteConfigs()[0].getUrl()
         // git branch: '${branch}',
         //      credentialsId: '${credentialsId}'
 
