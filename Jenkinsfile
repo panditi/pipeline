@@ -13,13 +13,13 @@ node {
   //echo env.getEnvironment()
      //if (env.BRANCH_NAME == 'master') 
    
-    // if (GIT_BRANCH == 'master'){
-      //      echo 'I only execute on the master branch'
+    if (GIT_BRANCH == 'master'){
+            echo 'I only execute on the master branch'
          
-  //   }
-   //  else {
-  //          echo 'I execute elsewhere'
-     //   }
+     }
+     else {
+          echo 'I execute elsewhere'
+        }
   //echo "My branch is: ${env.BRANCH_NAME}"
         //github_org
 
