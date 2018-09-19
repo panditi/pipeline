@@ -1,9 +1,9 @@
 node {
-    environment {
-        DISABLE_AUTH = 'true'
-        DB_ENGINE    = 'sqlite'
-    }
-     def repositoryUrl = scm.userRemoteConfigs[0].url  
+   // environment {
+  //      DISABLE_AUTH = 'true'
+   //     DB_ENGINE    = 'sqlite'
+  //  }
+    // def repositoryUrl = scm.userRemoteConfigs[0].url  
     //def credentialsId = System.getProperty("credentialsId")
     // This checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
