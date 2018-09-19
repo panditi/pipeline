@@ -8,8 +8,8 @@ node {
         println "Stage1:Validating"
          //branch name from Jenkins environment variables
   sh 'printenv'
-     //echo "My branch is: ${env.BRANCH_NAME}
-  //echo ${env.BRANCH_NAME}
+     echo "My branch is: ${env.BRANCH_NAME}"
+ 
   //echo env.getEnvironment()
      if (env.BRANCH_NAME == 'master') 
         {
