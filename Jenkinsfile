@@ -3,7 +3,7 @@ node {
         DISABLE_AUTH = 'true'
         DB_ENGINE    = 'sqlite'
     }
-    def credentialsId = System.getProperty("credentialsId")
+    //def credentialsId = System.getProperty("credentialsId")
     // This checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
         println "Stage1:Validating"
@@ -21,9 +21,20 @@ node {
      else {
           echo 'I execute elsewhere'
         }
-         git branch: '${branch}',
-              credentialsId: '${credentialsId}'
-  
+        // git branch: '${branch}',
+        //      credentialsId: '${credentialsId}'
+  try{
+      echo "Entered try block"
+        GIT_REPO_URL = null
+        command = "grep -oP '(?<=url>)[^<]+' /var/lib/jenkins/jobs/${JOB_NAME}/config.xml"
+        GIT_REPO_URL = sh(returnStdout: true, script: command).trim();
+        echo "Detected Git Repo URL: ${GIT_REPO_URL}"  
+    }
+    catch(err){
+          echo "Entered catch block"
+        throw err
+        error "Colud not find any Git repository for the job ${JOB_NAME}"
+  }
         //github_org
 
         //github_repo
