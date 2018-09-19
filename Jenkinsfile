@@ -11,9 +11,10 @@ node {
      //echo "My branch is: ${env.BRANCH_NAME}
   //echo ${env.BRANCH_NAME}
   //echo env.getEnvironment()
-     //if (env.BRANCH_NAME == 'master') 
+     if (env.BRANCH_NAME == 'master') 
+        {
    
-    if (GIT_BRANCH == 'master'){
+    //if (GIT_BRANCH == 'master'){
             echo 'I only execute on the master branch'
          
      }
