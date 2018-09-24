@@ -1,5 +1,5 @@
-def vertical_pipeline = "vertical_pipeline_navya"
-def github_org = "sainavya5"
+def vertical_pipeline = "vertical-github-pipeline"
+def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "master"
