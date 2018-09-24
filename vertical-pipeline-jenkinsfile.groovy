@@ -181,7 +181,7 @@ node{
        doGenerateSubmoduleConfigurations: false,
         extensions: [],
         submoduleCfg: [],
-        userRemoteConfigs: [[credentialsId: 'origin', url: 'https://github.com/${params.github_org}/${params.github_repo}.git']]])
+        userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
 
         sh 'ls'
 
