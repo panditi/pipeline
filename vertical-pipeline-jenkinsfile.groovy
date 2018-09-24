@@ -17,7 +17,7 @@ node{
             echo "Github Org: ${params.github_org}"
             echo "Github Repo: ${params.github_repo}"
             echo "Github Repo Path: ${params.github_repo_path}"
-            echo "Github branch: ${params.github_branch}"
+            echo "Github branch: ${params.github_repo_branch}"
             echo "Environment: ${params.environment}"
             echo "Before if loop"
             /*if("${params.github_org}" == null || "${params.github_org}".length() == 0){
@@ -177,7 +177,7 @@ node{
         echo "Stage2:Checkout"
         echo "=============================================="
 
-       checkout([$class: 'GitSCM', branches: [[name: "*/${github_repo_branch}"]],
+       checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
        doGenerateSubmoduleConfigurations: false,
         extensions: [],
         submoduleCfg: [],
