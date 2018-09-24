@@ -177,13 +177,13 @@ node{
         echo "Stage2:Checkout"
         echo "=============================================="
 
-       // checkout([$class: 'GitSCM', branches: [[name: '*/${github_repo_branch}']],
-       /* doGenerateSubmoduleConfigurations: false,
+       checkout([$class: 'GitSCM', branches: [[name: '*/${github_repo_branch}']],
+       doGenerateSubmoduleConfigurations: false,
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: 'https://github.com/${params.github_org}/${params.github_repo}.git']]])
 
-        sh 'ls'*/
+        sh 'ls'
 
 
        //checkout([$class: 'GitSCM',

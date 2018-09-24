@@ -3,7 +3,7 @@ def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "master"
-def environment = ""
+def environment = "sandbox"
 
 node{
     stage("iac_iam_roles"){
