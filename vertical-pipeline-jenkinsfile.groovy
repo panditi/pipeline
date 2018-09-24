@@ -177,7 +177,7 @@ node{
         echo "Stage2:Checkout"
         echo "=============================================="
 
-       checkout([$class: 'GitSCM', branches: [[name: '*/${github_repo_branch}']],
+       checkout([$class: 'GitSCM', branches: [[name: "*/${github_repo_branch}"]],
        doGenerateSubmoduleConfigurations: false,
         extensions: [],
         submoduleCfg: [],
