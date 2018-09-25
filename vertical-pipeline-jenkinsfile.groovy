@@ -193,8 +193,10 @@ node{
           git checkout develop
           echo "Listing the contents in develop branch"
           ls
-          echo "${pwd()}"
+          pwd
+
         '''
+        //echo "${pwd()}"
         sh '''
           cd env/
           ls -la
