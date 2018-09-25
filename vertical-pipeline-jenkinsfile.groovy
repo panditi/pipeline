@@ -190,6 +190,7 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
+        sh 'pwd'
         /*dir("/${params.github_org}/${params.github_repo}/"){
           echo "entered dir block"
           sh 'ls'
