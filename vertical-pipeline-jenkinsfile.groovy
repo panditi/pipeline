@@ -189,10 +189,6 @@ node{
           ls
           echo "Displaying contents of README.md file"
           cat README.md
-          echo "Changing branch from master to develop"
-          git checkout develop
-          echo "Listing the contents in develop branch"
-          ls
           pwd
 
         '''
