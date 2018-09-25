@@ -191,7 +191,7 @@ node{
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "${pwd()}"
-        sh 'cd env'
+        sh 'cd /env'
         echo"entered into env dir"
         sh 'ls -al'
         echo "Done"
