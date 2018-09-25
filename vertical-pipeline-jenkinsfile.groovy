@@ -190,7 +190,7 @@ node{
           echo "Displaying contents of README.md file"
           cat README.md
           pwd
-          cd env
+          cd iac-iam/env/
           ls -la
           echo \$(pwd)
 
