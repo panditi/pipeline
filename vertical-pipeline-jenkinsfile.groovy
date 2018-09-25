@@ -191,11 +191,12 @@ node{
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "Current directory is: "
+        pwd()
       /*  echo "changing to env directory"
         sh 'cd env/'
         echo "Listing the contents in env directory"
         sh 'ls'
-        echo "pwd testing"*/
+        echo "pwd testing"
         def r =pwd()
         echo r
         echo 'r'
