@@ -198,8 +198,8 @@ node{
           cd env/
           ls -la
           echo \$(pwd)
-          fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox'
-          if (true) {
+          String exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox'
+          if (exists == true) {
               echo 'Yes sandbox exists'
           } else {
               echo 'No sandbox doesn't exist'
