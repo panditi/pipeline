@@ -195,12 +195,14 @@ node{
         echo "Listing the contents in env directory"
         sh 'ls'
         echo "Done with all work"
-        sh 'if [ -d "iac-iam/env/sandbox/" ]
+        sh '''if [ -d "iac-iam/env/sandbox/" ]
         then
             echo "Directory /iac-iam/env/sandbox/ exists."
         else
             echo "Error: Directory iac-iam/env/sandbox/ does not exists."
-        fi'
+        fi
+        '''
+
 
        //checkout([$class: 'GitSCM',
        //branches: [[name: '*/master']],
