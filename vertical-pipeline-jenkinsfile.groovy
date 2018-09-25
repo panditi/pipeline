@@ -139,7 +139,7 @@ node{
                             {
                                 echo "The parameter validated is: ${MYLIST[element]} "
                             }
-                    }*/
+                    }
 
 
            /* MYTESTLIST = []
