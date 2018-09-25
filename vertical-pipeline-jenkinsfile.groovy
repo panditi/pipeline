@@ -199,10 +199,12 @@ node{
         echo "pwd testing"
         def r =pwd()
         echo r
-        echo 'r'
+        echo 'r'*/
         echo "Before dir block"
-        dir ('env'){
+        dir ('/env'){
             echo "entered dir block"
+            sh 'ls'
+            sh 'pwd'
             pwd()
         }
         echo "Done with all work"
