@@ -201,7 +201,7 @@ node{
         echo r
         echo 'r'*/
         echo "Before dir block"
-        dir ('/env'){
+        dir ('/iac-iam/env/'){
             echo "entered dir block"
             sh 'ls'
             sh 'pwd'
