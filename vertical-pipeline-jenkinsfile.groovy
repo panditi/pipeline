@@ -190,6 +190,11 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
+        dir('/iac-iam/env/') {
+          echo "entered dir block"
+          sh 'ls'
+          sh 'pwd'
+        }
         //echo "Current directory is: "
         //pwd()
       /*  echo "changing to env directory"
@@ -199,9 +204,9 @@ node{
         echo "pwd testing"
         def r =pwd()
         echo r
-        echo 'r'*/
+        echo 'r'
         echo "Before dir block"
-        dir ('/iac-iam/env/'){
+        dir ('/"${github_repo}"/env/'){
             echo "entered dir block"
             sh 'ls'
             sh 'pwd'
