@@ -106,21 +106,10 @@ node{
 
            fileExists 'sainavya5/pipeline.git'
              then echo "The file exists in given github repo path: $github_repo_path"*/
-            def parametersMap = [:]
-            parametersMap[github_org] = "${params.github_org}"
-            parametersMap[github_repo] = "${params.github_repo}"
-            parametersMap[github_repo_path] = "${params.github_repo_path}"
-            parametersMap[github_repo_branch] = "${params.github_repo_branch}"
-            parametersMap[environment] = "${params.environment}"
-
-            println "Key: ${parametersMap.keySet()}"
-            println "Value: ${map1.values()}"
-
-
-            /*echo "Entering my list"
+            echo "Entering my list"
             //creating list for parameters
             MYLIST = []
-                    MYLIST += "${params.github_org}"
+                    MYLIST += "github_org:${params.github_org}"
                     MYLIST += "${params.github_repo}"
                     MYLIST += "${params.github_repo_path}"
                     MYLIST += "${params.github_repo_branch}"
@@ -129,7 +118,7 @@ node{
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
 
-
+                            sh 'cut --complement -d ":" -f 1 MYLIST'
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
@@ -143,11 +132,9 @@ node{
                                 println MYLIST[]
                                  //printing MYLIST[element]
                                 echo "MYlist[element]"
-                                println MYLIST[element]
-                            echo "The parameter missing is: ${MYLIST[element]}"
-                                print 'DEBUG: parameter is = ' + params.MYLIST[element]
-                               print "DEBUG: parameter is = ${params.MYLIST[element}"
-                           }
+                                println MYLIST[element]*/
+                                echo "The parameter missing is: ${MYLIST[element]}"
+                              }
                             else
                             {
                                 echo "The parameter validated is: ${MYLIST[element]} "
