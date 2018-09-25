@@ -7,7 +7,6 @@ function Verticalpipelinejob{
       [$class: 'StringParameterValue', name: 'github_repo_branch', value: github_repo_branch],
       [$class: 'StringParameterValue', name: 'environment', value: environment]
       ]
-
 }
 
 
