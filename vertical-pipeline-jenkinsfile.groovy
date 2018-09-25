@@ -117,6 +117,9 @@ node{
 
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
+
+
+                            // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
                                /*echo "MYLIST"
@@ -187,7 +190,7 @@ node{
         echo "Displaying contents of README.md file"
         sh 'cat README.md'
         echo "Changing branch from master to develop"
-        sh 'git checkout develop'
+        sh "git checkout ${params.github_repo_branch}"
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "${pwd()}"
@@ -196,6 +199,9 @@ node{
           ls -la
           echo \$(pwd)
           '''
+          // sh """
+          //   echo "${params.github_org}"
+          // """
         //echo"entered into env dir"
         //sh 'ls -al'
         echo "Done"
@@ -261,6 +267,7 @@ node{
 
 
     }
+    /*
     stage('Validate_Paths')
     {
         echo "=============================================="
@@ -271,8 +278,8 @@ node{
     }
 
 
-    //This will check the terraform code syntax
-   /* stage('Lint') {
+    This will check the terraform code syntax
+   stage('Lint') {
             println "=============================================="
             println "Stage2:Lint"
 
