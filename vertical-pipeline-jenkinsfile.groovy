@@ -185,7 +185,7 @@ node{
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
         echo "Listing contents in current branch"
         sh 'ls'
-        cho "Displaying contents of README.md file"
+        echo "Displaying contents of README.md file"
         sh 'cat README.md'
         echo "Changing branch from master to develop"
         sh "git checkout ${params.github_repo_branch}"
