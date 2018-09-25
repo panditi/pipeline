@@ -190,7 +190,7 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
-        sh '''
+        /*sh '''
             cd iac-iam/env/sandbox/roles/backend.tfvars
             cat backend.tfvars
         '''
@@ -201,7 +201,13 @@ node{
         //    sh 'cat backend.tfvars'
         //}
 
-      /*
+        /*sh '''if [ -d "iac-iam/env/sandbox/" ]
+        then
+            echo "Directory /iac-iam/env/sandbox/ exists."
+        else
+            echo "Error: Directory iac-iam/env/sandbox/ does not exists."
+        fi
+        '''
       dir("/${params.github_org}/${params.github_repo}/"){
           echo "entered dir block"
           sh 'ls'
@@ -213,34 +219,8 @@ node{
         sh 'cd env/'
         echo "Listing the contents in env directory"
         sh 'ls'
-        echo "pwd testing"
-        def r =pwd()
-        echo r
-        echo 'r'
-        echo "Before dir block"
-        dir ('/"${github_repo}"/env/'){
-            echo "entered dir block"
-            sh 'ls'
-            sh 'pwd'
-            pwd()
-        }
         echo "Done with all work"
-        /*sh '''if [ -d "iac-iam/env/sandbox/" ]
-        then
-            echo "Directory /iac-iam/env/sandbox/ exists."
-        else
-            echo "Error: Directory iac-iam/env/sandbox/ does not exists."
-        fi
-        '''*/
 
-
-       //checkout([$class: 'GitSCM',
-       //branches: [[name: '*/master']],
-       /*doGenerateSubmoduleConfigurations: false,
-       extensions: [],
-       submoduleCfg: [],
-       userRemoteConfigs: [[credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99', url: 'https://github.com/opploans/iac.git']]])
-       echo "Done checkout scm. Entering into fike exists command"
 
        echo "Checking if readme.md file exists or not"
        def exists = fileExists 'README.md'
