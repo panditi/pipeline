@@ -190,6 +190,8 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
+        sh 'cd /env || ls'
+
         /*sh '''
             cd iac-iam/env/sandbox/roles/backend.tfvars
             cat backend.tfvars
