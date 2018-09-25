@@ -189,7 +189,7 @@ node{
           echo "Displaying contents of README.md file"
           cat README.md
           echo "Changing branch from master to develop"
-          git checkout ${params.github_repo_branch}
+          git checkout github_repo_branch
           echo "Listing the contents in develop branch"
           ls
           echo "${pwd()}"
