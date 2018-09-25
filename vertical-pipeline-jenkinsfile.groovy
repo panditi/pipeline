@@ -190,10 +190,16 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
-        dir('iac-iam/env/sandbox/roles/backend.tfvars') {
-            echo " In dir block"
-            sh 'cat backend.tfvars'
-        }
+        sh '''
+            cd iac-iam/env/sandbox/roles/backend.tfvars
+            cat backend.tfvars
+        '''
+
+
+        //dir('iac-iam/env/sandbox/roles/backend.tfvars') {
+        //    echo " In dir block"
+        //    sh 'cat backend.tfvars'
+        //}
 
       /*
       dir("/${params.github_org}/${params.github_repo}/"){
