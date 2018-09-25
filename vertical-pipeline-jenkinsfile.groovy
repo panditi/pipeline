@@ -194,8 +194,8 @@ node{
           echo "entered dir block"
           sh 'ls'
         }
-        //sh 'pwd'
-      /*dir("/${params.github_org}/${params.github_repo}/"){
+      /*sh 'pwd'
+      dir("/${params.github_org}/${params.github_repo}/"){
           echo "entered dir block"
           sh 'ls'
           sh 'pwd'
