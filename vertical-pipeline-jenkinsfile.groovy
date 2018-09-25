@@ -130,7 +130,7 @@ node{
                                  //printing MYLIST[element]
                                 echo "MYlist[element]"
                                 println MYLIST[element]*/
-                                echo "The parameter missing is: ${MYLIST[element]}"
+                            echo "The parameter missing is: ${MYLIST[element]}"
                                // print 'DEBUG: parameter is = ' + params.MYLIST[element]
                                // print "DEBUG: parameter is = ${params.MYLIST[element}"
                            }
@@ -182,8 +182,15 @@ node{
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-
+        echo "Listing contents in current branch"
         sh 'ls'
+        echo "Displaying contents of README.md file"
+        sh 'cat README'
+        echo "Changing branch from master to develop"
+        sh 'git checkout develop'
+        echo "Listing the contents in develop branch"
+        sh 'ls'
+        echo "Done with all work"
 
 
        //checkout([$class: 'GitSCM',
@@ -223,13 +230,14 @@ node{
 
 
     }
-  /*  stage('Validate_Paths')
+    stage('Validate_Paths')
     {
         echo "=============================================="
         echo "Stage3:Validate paths"
         echo "=============================================="
         sh 'cd pipeline || ls'
-    }*/
+
+    }
 
 
     //This will check the terraform code syntax
