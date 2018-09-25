@@ -191,17 +191,17 @@ node{
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "changing to env directory"
-        sh 'cd iac-iam/env/'
+        sh 'cd env/'
         echo "Listing the contents in env directory"
         sh 'ls'
         echo "Done with all work"
-        sh '''if [ -d "iac-iam/env/sandbox/" ]
+        /*sh '''if [ -d "iac-iam/env/sandbox/" ]
         then
             echo "Directory /iac-iam/env/sandbox/ exists."
         else
             echo "Error: Directory iac-iam/env/sandbox/ does not exists."
         fi
-        '''
+        '''*/
 
 
        //checkout([$class: 'GitSCM',
