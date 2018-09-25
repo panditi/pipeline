@@ -194,6 +194,11 @@ node{
         sh 'cd env/'
         echo "Listing the contents in env directory"
         sh 'ls'
+        echo "Before dir block"
+        dir ('env'){
+            echo "entered dir block"
+            sh 'pwd'
+        }
         echo "Done with all work"
         /*sh '''if [ -d "iac-iam/env/sandbox/" ]
         then
