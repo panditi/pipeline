@@ -109,7 +109,7 @@ node{
             echo "Entering my list"
             //creating list for parameters
             MYLIST = []
-                    MYLIST += "github_org:${params.github_org}"
+                    MYLIST += "${params.github_org}"
                     MYLIST += "${params.github_repo}"
                     MYLIST += "${params.github_repo_path}"
                     MYLIST += "${params.github_repo_branch}"
@@ -118,7 +118,7 @@ node{
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
 
-                            sh 'cut --complement -d ":" -f 1 MYLIST[]'
+                            //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
