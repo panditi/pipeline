@@ -109,11 +109,11 @@ node{
             echo "Entering my list"
             //creating list for parameters
             MYLIST = []
-                    MYLIST += "Github_org: ${params.github_org}"
-                    MYLIST += "Github_repo: ${params.github_repo}"
-                    MYLIST += "Github_repo_path: ${params.github_repo_path}"
-                    MYLIST += "Github_repo_branch: ${params.github_repo_branch}"
-                    MYLIST += "Environment: ${params.environment}"
+                    MYLIST += "${params.github_org}"
+                    MYLIST += "${params.github_repo}"
+                    MYLIST += "${params.github_repo_path}"
+                    MYLIST += "${params.github_repo_branch}"
+                    MYLIST += "${params.environment}"
 
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
