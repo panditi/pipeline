@@ -118,7 +118,7 @@ node{
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
 
-                            sh 'cut --complement -d ":" -f 1 MYLIST'
+                            sh 'cut --complement -d ":" -f 1 MYLIST[]'
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
