@@ -9,7 +9,8 @@ node{
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
         github_repo_path = "roles"
-        def functions = load "${/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy}"
+        def functions = readFile '/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy'
+ //"${/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy}"
         functions.Verticalpipelinejob(github_org,github_repo,github_repo_path,github_repo_branch,environment)
       // def fubnctions = load "${thefilepath}"
       //  functions.executeVerticalPipeline(github_org,ygithub_repo,github_repo_path,wgithub_repo_branch,environment)
