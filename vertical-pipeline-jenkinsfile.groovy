@@ -198,30 +198,23 @@ node{
           cd env/
           ls -la
           echo \$(pwd)
-          def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox'
-          if (exists == true) {
-              echo 'Yes sandbox exists'
-          } else {
-              echo 'No sandbox doesn't exist'
-          }
-          '''
-          // sh """
-          //   echo "${params.github_org}"
-          // """
-        //echo"entered into env dir"
-        //sh 'ls -al'
+        '''
+        def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox'
+        if (exists == true) {
+            echo "Yes sandbox exists"
+        }
+        else {
+            echo "No sandbox doesn't exist"
+        }
         echo "Done"
 
-        /*sh '''
-            cd iac-iam/env/sandbox/roles/backend.tfvars
-            cat backend.tfvars
-        '''
 
 
-        //dir('iac-iam/env/sandbox/roles/backend.tfvars') {
-        //    echo " In dir block"
-        //    sh 'cat backend.tfvars'
-        //}
+
+        /* dir('iac-iam/env/sandbox/roles/backend.tfvars') {
+            echo " In dir block"
+            sh 'cat backend.tfvars'
+        }
 
         /*sh '''if [ -d "iac-iam/env/sandbox/" ]
         then
