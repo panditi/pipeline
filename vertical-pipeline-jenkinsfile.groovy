@@ -191,15 +191,16 @@ node{
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "Current directory is: "
-        sh 'pwd'
         echo "changing to env directory"
         sh 'cd env/'
         echo "Listing the contents in env directory"
         sh 'ls'
+        echo "pwd testing"
+        pwd()
         echo "Before dir block"
         dir ('env'){
             echo "entered dir block"
-            sh 'pwd'
+            pwd()
         }
         echo "Done with all work"
         /*sh '''if [ -d "iac-iam/env/sandbox/" ]
