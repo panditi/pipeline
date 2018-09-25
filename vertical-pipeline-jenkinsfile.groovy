@@ -190,7 +190,7 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
-        dir('/iac-iam/env/') {
+        dir('/env/sandbox') {
           echo "entered dir block"
           sh 'ls'
           sh 'pwd'
