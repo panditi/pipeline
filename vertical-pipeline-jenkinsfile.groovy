@@ -191,9 +191,13 @@ node{
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "${pwd()}"
-        sh 'cd iac-iam/env/'
-        echo"entered into env dir"
-        sh 'ls -al'
+        sh '''
+          cd env/
+          ls -la
+          echo \$(pwd)
+          '''
+        //echo"entered into env dir"
+        //sh 'ls -al'
         echo "Done"
 
         /*sh '''
