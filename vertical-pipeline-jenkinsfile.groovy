@@ -199,7 +199,7 @@ node{
           ls -la
           echo \$(pwd)
         '''
-        def exists = fileExists "${/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox}"
+        def exists = fileExists "${pwd()}/sandbox"
         if (exists == true) {
             echo "Yes sandbox exists"
         }
