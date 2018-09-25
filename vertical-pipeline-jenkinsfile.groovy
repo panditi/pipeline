@@ -191,7 +191,7 @@ node{
         echo "Listing the contents in develop branch"
         sh 'ls'
         echo "changing to env directory"
-        sh 'cd env/'
+        sh 'cd env'
         echo "Listing the contenets in env directory"
         sh 'ls'
         echo "Done with all work"
