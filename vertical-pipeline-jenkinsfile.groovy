@@ -106,7 +106,18 @@ node{
 
            fileExists 'sainavya5/pipeline.git'
              then echo "The file exists in given github repo path: $github_repo_path"*/
-            echo "Entering my list"
+            def parametersMap = [:]
+            parametersMap[github_org] = "${params.github_org}"
+            parametersMap[github_repo] = "${params.github_repo}"
+            parametersMap[github_repo_path] = "${params.github_repo_path}"
+            parametersMap[github_repo_branch] = "${params.github_repo_branch}"
+            parametersMap[environment] = "${params.environment}"
+
+            println "Key: ${parametersMap.keySet()}"
+            println "Value: ${map1.values()}"
+
+
+            /*echo "Entering my list"
             //creating list for parameters
             MYLIST = []
                     MYLIST += "${params.github_org}"
@@ -132,16 +143,16 @@ node{
                                 println MYLIST[]
                                  //printing MYLIST[element]
                                 echo "MYlist[element]"
-                                println MYLIST[element]*/
+                                println MYLIST[element]
                             echo "The parameter missing is: ${MYLIST[element]}"
-                               // print 'DEBUG: parameter is = ' + params.MYLIST[element]
-                               // print "DEBUG: parameter is = ${params.MYLIST[element}"
+                                print 'DEBUG: parameter is = ' + params.MYLIST[element]
+                               print "DEBUG: parameter is = ${params.MYLIST[element}"
                            }
                             else
                             {
                                 echo "The parameter validated is: ${MYLIST[element]} "
                             }
-                    }
+                    }*/
 
 
            /* MYTESTLIST = []
