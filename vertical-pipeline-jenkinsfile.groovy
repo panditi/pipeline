@@ -190,14 +190,15 @@ node{
           echo "Displaying contents of README.md file"
           cat README.md
           pwd
-
-        '''
-        //echo "${pwd()}"
-        sh '''
           cd env/
           ls -la
           echo \$(pwd)
+
         '''
+        //echo "${pwd()}"
+
+
+    
         /*def exists = fileExists "${pwd()}/sandbox"
         if (exists == true) {
             echo "Yes sandbox exists"
