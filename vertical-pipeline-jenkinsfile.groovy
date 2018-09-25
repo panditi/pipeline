@@ -185,10 +185,10 @@ node{
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-        echo "Listing contents in current branch"
-        sh 'ls'
-        echo "Displaying contents of README.md file"
-        sh 'cat README.md'
+        //echo "Listing contents in current branch"
+        //sh 'ls'
+        //echo "Displaying contents of README.md file"
+        //sh 'cat README.md'
         echo "Changing branch from master to develop"
         sh "git checkout ${params.github_repo_branch}"
         echo "Listing the contents in develop branch"
@@ -198,6 +198,12 @@ node{
           cd env/
           ls -la
           echo \$(pwd)
+          fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox'
+          if (true) {
+              echo 'Yes sandbox exists'
+          } else {
+              echo 'No sandbox doesn't exist'
+          }
           '''
           // sh """
           //   echo "${params.github_org}"
