@@ -193,7 +193,13 @@ node{
           cd iac-iam/env/
           ls -la
           echo \$(pwd)
+          if [ -d env/sanbox/] ;
+          then
+              echo "sanbox exists"
 
+          else
+              echo "sanbox donot exist"
+          fi
         '''
         //echo "${pwd()}"
 
