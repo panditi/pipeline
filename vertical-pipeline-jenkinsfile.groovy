@@ -190,8 +190,8 @@ node{
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
         sh 'ls'
-        echo "Current directory is: "
-        pwd()
+        //echo "Current directory is: "
+        //pwd()
       /*  echo "changing to env directory"
         sh 'cd env/'
         echo "Listing the contents in env directory"
