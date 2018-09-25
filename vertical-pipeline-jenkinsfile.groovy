@@ -185,7 +185,7 @@ node{
         echo "Listing contents in current branch"
         sh 'ls'
         echo "Displaying contents of README.md file"
-        sh 'cat README'
+        sh 'cat README.md'
         echo "Changing branch from master to develop"
         sh 'git checkout develop'
         echo "Listing the contents in develop branch"
