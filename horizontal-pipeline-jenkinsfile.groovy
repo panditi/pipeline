@@ -2,7 +2,7 @@ def vertical_pipeline = "vertical-github-pipeline"
 def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
-def github_repo_branch = "develop"
+def github_repo_branch = "master"
 def environment = "sandbox"
 
 node{
