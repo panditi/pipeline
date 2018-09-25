@@ -183,14 +183,14 @@ node{
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-        def branch = "${params.github_repo_branch}"
+        //def branch = "${params.github_repo_branch}"
         sh '''
           echo "Listing contents in current branch"
           ls
           echo "Displaying contents of README.md file"
           cat README.md
           echo "Changing branch from master to develop"
-          git checkout "${branch}"
+          git checkout develop
           echo "Listing the contents in develop branch"
           ls
           echo "${pwd()}"
