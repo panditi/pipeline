@@ -185,6 +185,7 @@ node{
                   submoduleCfg: [],
                   userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
         }
+        sh 'cd env && ls'
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
         sh 'ls'
