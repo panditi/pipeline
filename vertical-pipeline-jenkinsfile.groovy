@@ -210,7 +210,6 @@ node{
         else
         {
            echo "Deleting folder ${source_folder_name}"
-           source_folder.deleteDir()
         }
 
         //echo "${pwd()}"
