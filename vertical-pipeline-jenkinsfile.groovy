@@ -187,11 +187,11 @@ node{
         /*echo "Listing contents in current branch"
         sh 'ls'
         echo "Displaying contents of README.md file"
-        sh 'cat README.md'
+        sh 'cat README.md'*/
         echo "Changing branch from master to develop"
-        //sh 'git checkout develop'
+        sh "git checkout ${params.environment}"
         echo "Listing the contents in develop branch"
-        //sh 'ls'*/
+        //sh 'ls'
         echo "${pwd()}"
         sh '''
           cd iac-iam/env/
@@ -209,7 +209,7 @@ node{
         }
         else
         {
-           echo "Deleting folder ${source_folder_name}"
+           echo "Source folder ${source_folder_name} exists"
         }
 
         //echo "${pwd()}"
