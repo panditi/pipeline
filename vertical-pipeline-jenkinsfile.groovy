@@ -194,6 +194,7 @@ node{
         echo "${pwd()}"
         sh "git checkout ${params.github_repo_branch}"
           echo "${pwd()}"*/
+        echo "${params.github_repo_branch}"
         sh '''
           echo \$(pwd)
           echo "${params.github_repo_branch}"
