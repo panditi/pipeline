@@ -177,7 +177,7 @@ node{
         echo "=============================================="
         echo "Stage2:Checkout"
         echo "=============================================="
-
+        echo $PWD
        checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
        doGenerateSubmoduleConfigurations: false,
         extensions: [],
@@ -197,8 +197,8 @@ node{
         echo "${params.github_repo_branch}"
         sh 'printenv'
         sh '''
-          echo "Printing workspace"
-          echo $WORKSPACE
+          echo "Printing workspace+"
+          echo $PWD
           "echo ${params.github_repo_branch}"
           echo \$(pwd)
           "git checkout ${params.github_repo_branch}"
