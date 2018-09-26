@@ -189,11 +189,12 @@ node{
         echo "Displaying contents of README.md file"
         sh 'cat README.md'*/
         echo "Changing branch from master to develop"
-        sh "git checkout ${params.github_repo_branch}"
-        echo "Listing the contents in develop branch"
-        sh 'ls'
-        echo "${pwd()}"
+
         sh '''
+          "git checkout ${params.github_repo_branch}"
+          echo "Listing the contents in develop branch"
+          ls
+          echo "${pwd()}"
           cd env/
           ls -la
           echo \$(pwd)
