@@ -188,7 +188,7 @@ node{
         sh '''
           #!/bin/bash
           cd env && ls
-          if [ ! -d $PWD/sandbox4]; then
+          if [ ! -d "$PWD/sandbox4"]; then
               echo "Directory not found!"
 
           else
