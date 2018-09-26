@@ -185,7 +185,19 @@ node{
                   submoduleCfg: [],
                   userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
         }
-        sh 'cd env && ls'
+        sh '''
+          #!/bin/bash
+          cd env && ls
+          if("${params.github-repo_path}" == roles)
+          {
+              echo "exists"
+          }
+          else
+          {
+              echo "donot exists"
+          }
+
+          '''
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
         sh 'ls'
@@ -199,7 +211,7 @@ node{
           echo "${pwd()}"*/
         echo "${params.github_repo_branch}"
         sh 'printenv'
-        sh '''
+        /*sh '''
           echo "Printing workspace+"
           echo $PWD
           "echo ${params.github_repo_branch}"
