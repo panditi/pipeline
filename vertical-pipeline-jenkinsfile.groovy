@@ -194,7 +194,7 @@ node{
         //sh 'ls'*/
         echo "${pwd()}"
         sh '''
-          cd env/
+          cd iac-iam/env/
           ls -la
           echo \$(pwd)
           '''
