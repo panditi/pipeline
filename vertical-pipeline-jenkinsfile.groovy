@@ -188,8 +188,8 @@ node{
         sh '''
           #!/bin/bash
           cd env && ls
-          if [ ! -d ${PWD}/${github_repo}/env/sandbox ]; then
-              echo "File not found!"
+          if [ ! -d ${PWD}/${github_repo}/sandbox ]; then
+              echo "Directory not found!"
           fi
 
           '''
