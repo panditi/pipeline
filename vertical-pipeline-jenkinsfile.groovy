@@ -177,7 +177,7 @@ node{
         echo "=============================================="
         echo "Stage2:Checkout"
         echo "=============================================="
-        echo $PWD
+        sh 'echo $PWD'
        checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
        doGenerateSubmoduleConfigurations: false,
         extensions: [],
