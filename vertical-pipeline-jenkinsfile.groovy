@@ -178,11 +178,13 @@ node{
         echo "Stage2:Checkout"
         echo "=============================================="
         sh 'echo $PWD'
-       checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-       doGenerateSubmoduleConfigurations: false,
-        extensions: [],
-        submoduleCfg: [],
-        userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
+        dir ('src'){
+                  checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
+                  doGenerateSubmoduleConfigurations: false,
+                  extensions: [],
+                  submoduleCfg: [],
+                  userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
+        }
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
         sh 'ls'
