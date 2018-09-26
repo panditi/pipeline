@@ -197,7 +197,7 @@ node{
         echo "${params.github_repo_branch}"
         sh 'printenv'
         sh '''
-          echo \$(pwd)
+          echo $WORKSPACE
           "echo ${params.github_repo_branch}"
           echo \$(pwd)
           "git checkout ${params.github_repo_branch}"
