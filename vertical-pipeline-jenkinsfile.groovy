@@ -187,7 +187,7 @@ node{
         sh '''
           #!/bin/bash
           cd env && ls && pwd
-          if [ -d "$PWD/sandbox"];
+          if [ -d "$PWD/sandbox"]
           then
               echo "Directory  found!"
 
