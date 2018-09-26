@@ -188,7 +188,7 @@ node{
         sh '''
           #!/bin/bash
           cd env && ls
-          if("${params.github-repo_path}" == roles)
+          if("${params.github_repo_path}" == roles)
           {
               echo "exists"
           }
