@@ -191,7 +191,7 @@ node{
         echo "Changing branch from master to develop"
 
         sh '''
-          'git checkout "${params.github_repo_branch}"'
+          git checkout "${params.github_repo_branch}"
           echo "Listing the contents in develop branch"
           ls
           echo "${pwd()}"
