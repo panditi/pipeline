@@ -203,17 +203,20 @@ node{
         echo "Done getting correct "
 
         //echo "${pwd()}"
-
-        def folder = new File( 'env/sandbox' )
+    
+        def myFolderPath = "/env/sandbox"
+        def myFolder = new Folder(myFolderPath)
 
         // If it doesn't exist
-        if( !folder.exists() ) {
+        if (myFolder.exists)
+        {
+
           // Create all folders up-to and including B
-          echo "folder donot exist"
+          echo "folder  exist"
         }
         else
         {
-          echo "folder exists"
+          echo "folder donot exists"
         }
         /*def exists = fileExists "\$(pwd)/sandbox"
         sh '''
