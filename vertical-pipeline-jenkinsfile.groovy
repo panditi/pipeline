@@ -190,10 +190,10 @@ node{
           cd env && ls
           if [ ! -d ${PWD}/${github_repo}/sandbox ]; then
               echo "Directory not found!"
-          fi
+
           else
               echo "Directory found"
-
+          fi
           '''
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
