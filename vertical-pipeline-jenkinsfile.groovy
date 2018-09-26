@@ -195,9 +195,10 @@ node{
         sh "git checkout ${params.github_repo_branch}"
           echo "${pwd()}"*/
         echo "${params.github_repo_branch}"
+        sh 'printenv'
         sh '''
           echo \$(pwd)
-          echo ${params.github_repo_branch}
+          "echo ${params.github_repo_branch}"
           echo \$(pwd)
           "git checkout ${params.github_repo_branch}"
           echo "Listing the contents in develop branch"
