@@ -184,22 +184,24 @@ node{
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
         //def branch = "${params.github_repo_branch}"
+        echo "Listing contents in current branch"
+        sh 'ls'
+        echo "Displaying contents of README.md file"
+        sh 'cat README.md'
+        echo "Changing branch from master to develop"
+        sh 'git checkout develop'
+        echo "Listing the contents in develop branch"
+        sh 'ls'
+        echo "${pwd()}"
         sh '''
-            echo "Listing contents in current branch"
-            ls
-            echo "Displaying contents of README.md file"
-            cat README.md
-            echo "Changing branch from master to develop"
-            git checkout develop
-            echo "Listing the contents in develop branch"
-            ls
-            echo "${pwd()}"
+          cd env/
+          ls -la
+          echo \$(pwd)
           '''
-          sh '''
-            cd env/
-            ls -la
-            echo \$(pwd)
-          '''
+        //echo"entered into env dir"
+        //sh 'ls -al'
+        echo "Done"
+        
         //echo "${pwd()}"
 
 
