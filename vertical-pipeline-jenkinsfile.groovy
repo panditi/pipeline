@@ -204,19 +204,28 @@ node{
 
         //echo "${pwd()}"
 
+        def folder = new File( 'env/sandbox' )
 
-
-        def exists = fileExists "\$(pwd)/sandbox"
+        // If it doesn't exist
+        if( !folder.exists() ) {
+          // Create all folders up-to and including B
+          echo "folder donot exist"
+        }
+        else
+        {
+          echo "folder exists"
+        }
+        /*def exists = fileExists "\$(pwd)/sandbox"
         sh '''
           if (exists == true)
           {
               echo "Yes sandbox exists"
           }
           else {
-              echo "No sandbox doesn't exist"
+              echo "No sandbox doesnot exist"
           }
           '''
-        echo "Done."
+        echo "Done."*/
 
 
 
