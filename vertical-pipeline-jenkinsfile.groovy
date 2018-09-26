@@ -207,13 +207,14 @@ node{
 
 
         def exists = fileExists "\$(pwd)/sandbox"
-        if (exists == true) {
+        sh '''if (exists == true) {
             echo "Yes sandbox exists"
         }
         else {
             echo "No sandbox doesn't exist"
         }
-        echo "Done"
+        '''
+        echo "Done."
 
 
 
