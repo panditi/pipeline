@@ -188,16 +188,15 @@ node{
         sh 'ls'
         echo "Displaying contents of README.md file"
         sh 'cat README.md'*/
-        sh "cd ${params.github_org}/${params.github_repo} || pwd"
+        /*sh "cd ~/${params.github_repo} || pwd"
         echo "${pwd()}"
         echo "Changing branch from master to develop"
         echo "${pwd()}"
         sh "git checkout ${params.github_repo_branch}"
-          echo "${pwd()}"
+          echo "${pwd()}"*/
         sh '''
-          "cd ${params.github_org}/${params.github_repo} || pwd"
+          "cd ~/${params.github_repo} || pwd"
           "git checkout ${params.github_repo_branch}"
-
           echo "Listing the contents in develop branch"
           ls
           echo "${pwd()}"
