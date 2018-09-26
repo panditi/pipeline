@@ -195,9 +195,8 @@ node{
         sh "git checkout ${params.github_repo_branch}"
           echo "${pwd()}"*/
         sh '''
-          cd ~
           echo \$(pwd)
-          "cd  ${params.github_repo}"
+          echo "${params.github_repo_branch}"
           echo \$(pwd)
           "git checkout ${params.github_repo_branch}"
           echo "Listing the contents in develop branch"
