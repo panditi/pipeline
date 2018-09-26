@@ -191,10 +191,10 @@ node{
         echo "Changing branch from master to develop"
         sh "git checkout ${params.github_repo_branch}"
         echo "Listing the contents in develop branch"
-        //sh 'ls'
+        sh 'ls'
         echo "${pwd()}"
         sh '''
-          cd iac-iam/env/
+          cd env/
           ls -la
           echo \$(pwd)
           '''
