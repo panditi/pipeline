@@ -197,6 +197,7 @@ node{
         echo "${params.github_repo_branch}"
         sh 'printenv'
         sh '''
+          echo "Printing workspace"
           echo $WORKSPACE
           "echo ${params.github_repo_branch}"
           echo \$(pwd)
