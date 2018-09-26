@@ -188,7 +188,7 @@ node{
         sh '''
           #!/bin/bash
           cd env && ls
-          if [ ! -d "${PWD}/${github_repo}/${params.environment}"]; then
+          if [ ! -d ${PWD}/${github_repo}/${params.environment}]; then
               echo "Directory not found!"
 
           else
