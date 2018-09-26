@@ -188,14 +188,9 @@ node{
         sh '''
           #!/bin/bash
           cd env && ls
-          if("${params.github_repo_path}" == roles)
-          {
-              echo "exists"
-          }
-          else
-          {
-              echo "donot exists"
-          }
+          if [ ! -d ${PWD}/${github_repo}/env/sandbox ]; then
+              echo "File not found!"
+          fi
 
           '''
         //def branch = "${params.github_repo_branch}"
