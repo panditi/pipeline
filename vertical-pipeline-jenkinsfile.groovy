@@ -200,8 +200,8 @@ node{
           '''
         //echo"entered into env dir"
         //sh 'ls -al'
-        echo "Done"
-        
+        echo "Done getting correct "
+
         //echo "${pwd()}"
 
 
