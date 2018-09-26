@@ -200,10 +200,10 @@ node{
           '''
         //echo"entered into env dir"
         //sh 'ls -al'
-        echo "Done getting correct "
+        echo "Done."
         def source_folder_name = "${pwd()}/${params.environment}"
-        def source_folder = new File(source_folder_name)
-        if (!source_folder.exists())
+        //def source_folder = new File(source_folder_name)
+        if (!source_folder_name.exists())
         {
            echo "Source folder ${source_folder_name} does not exist"
         }
