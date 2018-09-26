@@ -195,7 +195,7 @@ node{
               echo "Directory not found"
           fi
           '''
-        }
+        
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
         sh 'ls'
