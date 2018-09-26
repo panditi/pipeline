@@ -191,6 +191,8 @@ node{
           if [ ! -d ${PWD}/${github_repo}/sandbox ]; then
               echo "Directory not found!"
           fi
+          else
+              echo "Directory found"
 
           '''
         //def branch = "${params.github_repo_branch}"
