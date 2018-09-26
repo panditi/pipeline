@@ -184,7 +184,7 @@ node{
                   extensions: [],
                   submoduleCfg: [],
                   userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-        }
+
         sh '''
           #!/bin/bash
           cd env && ls
@@ -195,6 +195,7 @@ node{
               echo "Directory found"
           fi
           '''
+        }
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
         sh 'ls'
