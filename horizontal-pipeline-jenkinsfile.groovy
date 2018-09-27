@@ -9,7 +9,7 @@ node{
     def pipefuncs
     echo "${pwd()}"
     //def buildJob()
-    pipefuncs = readFile 'pipeline/functions.groovy'
+    pipefuncs = readFile 'functions.groovy'
     //pipeline/functions.groovy
       buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
 
@@ -22,7 +22,7 @@ node{
           ]
 
     }
-    return this;
+    
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
         github_repo_path = "roles"
