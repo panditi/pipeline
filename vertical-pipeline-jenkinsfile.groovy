@@ -92,6 +92,7 @@ node{
                                 echo $j >>temp.txt
                                 cat temp.txt
                             }
+                                cat temp.txt
                                 echo "The parameter missing is: "
                                 cut -d ':' -f 1 temp.txt
                                 '''
