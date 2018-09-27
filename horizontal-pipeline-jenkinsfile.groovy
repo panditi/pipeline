@@ -7,7 +7,9 @@ def environment = "sandbox"
 
 node{
     def pipefuncs
+    echo "${pwd()}"
     pipefuncs = load "/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy"
+    //pipeline/functions.groovy
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
         github_repo_path = "roles"
