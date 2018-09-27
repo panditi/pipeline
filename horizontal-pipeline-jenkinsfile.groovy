@@ -7,8 +7,8 @@ def environment = "sandbox"
 
 node{
     stage("iac_iam_roles"){
-        github_repo = "iac-iam"
-        github_repo_path = "iroles"
+        github_repo = "iiac-iam"
+        github_repo_path = "roles"
 
  //"${/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy}"
         //functions.Verticalpipelinejob(github_org,github_repo,github_repo_path,github_repo_branch,environment)
