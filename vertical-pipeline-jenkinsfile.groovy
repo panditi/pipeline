@@ -81,19 +81,21 @@ node{
 
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
-                            String s = cut -d ':' -f 1 MYLIST[element]
+
                             //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
-                               echo "The parameter missing is: $s"
-                               echo "The parameter missing is: ${s}"
+                                echo "The parameter missing is: "
+                                sh "cut -d ':' -f 1 MYLIST[element]"
+                               //echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
                               }
                             else
                             {
-                                echo "The parameter missing is: $s"
-                                echo "The parameter missing is: ${s}"
+                                 "The parameter missing is: "
+                                   sh "cut -d ':' -f 1 MYLIST[element]"
+                                //echo "The parameter missing is: ${s}"
                                 echo "The parameter validated is: ${MYLIST[element]} "
                             }
                     }
