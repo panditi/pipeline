@@ -9,10 +9,7 @@ node{
 
 
 // Concat or add params and return them
-  def my_second_function(param1, param2)
-  {
-      return param1 + param2
-  }
+
 
 //Make a stage that echo's something
 
@@ -53,4 +50,8 @@ node{
             ]
     }
 
+}
+def my_second_function(param1, param2)
+{
+    return param1 + param2
 }
