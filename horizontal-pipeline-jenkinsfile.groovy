@@ -6,7 +6,7 @@ def github_repo_branch = "develop"
 def environment = "sandbox"
 
 node{
-    //def pipefuncs
+    def pipefuncs
     echo "${pwd()}"
     //def buildJob()
     //pipefuncs = readFile '/var/lib/jenkins/workspace/functions.groovy'
@@ -26,7 +26,7 @@ node{
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
         github_repo_path = "roles"
-        pipefuncs.buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
+        pipefuncs.buildJob(${params.github_org}, ${params.github_repo}, ${params.github_repo_path}, ${params.github_repo_branch}, ${params.environment})
 
  //"${/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy}"
         //functions.Verticalpipelinejob(github_org,github_repo,github_repo_path,github_repo_branch,environment)
