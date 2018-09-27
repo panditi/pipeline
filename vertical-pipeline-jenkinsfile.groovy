@@ -85,21 +85,17 @@ node{
                             //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
-                           {
-                             sh '''
-                             for j in ${MYLIST[element]}
                             {
-                                echo $j >>temp.txt
-                                cat temp.txt
-                            }
-                                cat temp.txt
-                                echo "The parameter missing is: "
-                                cut -d ':' -f 1 temp.txt
+                                sh '''
+                                for j in "${MYLIST[element]}"
+                                do
+                                      echo $j
+                                      echo $j >tmp.txt
+                                      cat tmp.txt
+                                done
                                 '''
-
-                               //echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                              }
+                            }
                             else
                             {
                                  "The parameter missing is: "
@@ -108,7 +104,6 @@ node{
                                 echo "The parameter validated is: ${MYLIST[element]} "
                             }
                     }
-
 
            /* MYTESTLIST = []
                     MYTESTLIST += "params.github_org"
