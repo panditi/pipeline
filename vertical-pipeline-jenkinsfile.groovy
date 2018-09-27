@@ -90,10 +90,12 @@ node{
                              for j in ${MYLIST[element]}
                             {
                                 echo $j >>temp.txt
+                                cat temp.txt
                             }
                                 echo "The parameter missing is: "
                                 cut -d ':' -f 1 temp.txt
                                 '''
+
                                //echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
                               }
