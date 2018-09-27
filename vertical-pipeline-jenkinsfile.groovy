@@ -19,7 +19,7 @@ node{
             echo "Github Repo Path: ${params.github_repo_path}"
             echo "Github branch: ${params.github_repo_branch}"
             echo "Environment: ${params.environment}"
-            echo "Before if loop"
+            //echo "Before if loop"
             /*if("${params.github_org}" == null || "${params.github_org}".length() == 0){
                 echo "enteered first if loop"
                 echo "Github_org parameter is provided"
@@ -39,18 +39,7 @@ node{
 
 
 
-            if(("${params.github_org}" == null || "${params.github_org}".length() == 0) &&
-            ("${params.github_repo}" == null || "${params.github_repo}".length() == 0) &&
-            ("${params.github_repo_path}" == null || "${params.github_repo_path}".length() == 0) &&
-            ("${params.github_repo_branch}" == null || "${params.github_repo_branch}".length() == 0) &&
-            ("${params.github_repo_path}" == null || "${params.github_repo_path}".length() == 0))
-            {
-                echo "Missing parameters"
-            }
-            else
-            {
-                echo "All parameters are provided"
-            }
+
 
 
             if("${params.github_org}" == null || "${params.github_org}".length() == 0 ){
@@ -69,31 +58,6 @@ node{
                 echo "In else loop"
                 echo "Git hub repo Parameter is provided"
             }
-            if("${params.github_repo_path}" == null || "${params.github_repo_path}".length() == 0 ){
-                echo "In if loop"
-                echo "Missing parameter: Please provide the github_repo_path"
-            }
-            else{
-                echo "In else loop"
-                echo "Git hub repo path Parameter is provided"
-            }
-             if("${params.github_repo_branch}" == null || "${params.github_repo_branch}".length() == 0 ){
-                echo "In if loop"
-                echo "Missing parameter: Please provide the github_repo_branch"
-            }
-            else{
-                echo "In else loop"
-                echo "Git hub repo branch Parameter is provided"
-            }
-
-            if("${params.environment}" == null || "${params.environment}".length() == 0 ){
-                echo "In if loop"
-                echo "Missing parameter: Please provide the environment"
-            }
-             else{
-                echo "In else loop"
-                echo "Environment Parameter is provided"
-            }
 
             def myParam = false
             if (params.myParam != null){
@@ -109,7 +73,7 @@ node{
             echo "Entering my list"
             //creating list for parameters
             MYLIST = []
-                    MYLIST += "${params.github_org}"
+                    MYLIST += "Github_org:${params.github_org}"
                     MYLIST += "${params.github_repo}"
                     MYLIST += "${params.github_repo_path}"
                     MYLIST += "${params.github_repo_branch}"
@@ -117,26 +81,19 @@ node{
 
                     for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
-
+                            String s = cut -d ':' -f 1 MYLIST[element]
                             //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
-                               /*echo "MYLIST"
-                                println MYLIST
-                                 //printing ELEMENT
-                                echo "element"
-                                println element
-                                 //printing MYLIST[]
-                                echo "MYLIST[]"
-                                println MYLIST[]
-                                 //printing MYLIST[element]
-                                echo "MYlist[element]"
-                                println MYLIST[element]*/
+                               echo "The parameter missing is: $s"
+                               echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
                               }
                             else
                             {
+                                echo "The parameter missing is: $s"
+                                echo "The parameter missing is: ${s}"
                                 echo "The parameter validated is: ${MYLIST[element]} "
                             }
                     }

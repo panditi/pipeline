@@ -1,30 +1,12 @@
 def vertical_pipeline = "vertical-github-pipeline"
-def github_org = "opploans"
+def github_org = ""
 def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
 def environment = "sandbox"
-def my_second_function(param1, param2)
-{
-    return param1 + param2
-}
+
 node{
     echo "${pwd()}"
-    stage("check_function")
-    {
-      when{
-        expression{my_second_function(2,7)}
-      }
-    }
-
-// Concat or add params and return them
-
-
-//Make a stage that echo's something
-
-
-    //pipefuncs = readFile '/var/lib/jenkins/workspace/functions.groovy'
-    //pipeline/functions.groovy
 
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
@@ -59,4 +41,8 @@ node{
             ]
     }
 
+}
+def my_second_function(param1, param2)
+{
+    return param1 + param2
 }
