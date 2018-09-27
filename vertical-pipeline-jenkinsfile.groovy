@@ -336,20 +336,21 @@ node{
             else {
                 echo 'No'
             }*/
-
+            //Defining a string variable to check if the provided environment path exist or not
             def environmentExists = fileExists "${pwd()}/env/${params.environment}"
             //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
               echo "${pwd()}"
               if (environmentExists)
               {
                   echo "Environment path: ${params.environment} exists."
+                  //Defining a string variable to check if the provided github_repo_path  exist or not
                   def githubrepopathExists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
                   if (githubrepopathExists)
                   {
                       echo "Github repo path: ${params.github_repo_path} exists"
                   }
                   else{
-                      echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid github_repo_path"
+                      echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
                   }
               }
               else {
