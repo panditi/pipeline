@@ -24,7 +24,7 @@ node{
     }
     stage("iac-network_base"){
         github_repo = "iac-network"
-        github_repo_path = "base"
+        github_repo_path = "network-base"
 
         build job: vertical_pipeline, parameters: [
             [$class: 'StringParameterValue', name: 'github_org', value: github_org],
