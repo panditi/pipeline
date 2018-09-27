@@ -4,15 +4,15 @@ def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
 def environment = "sandbox"
-def my_second_function(param1, param2)
-{
-    return param1 + param2
-    echo "QQQQQQQQQQQQWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWIIIITFUJUFHFHTFJHGKFJRDJTRFKUYGUGJHFJTYFYGJKHGJYG"
-}
+
 node{
     echo "${pwd()}"
 
-
+    def my_second_function(param1, param2)
+    {
+        return param1 + param2
+        echo "QQQQQQQQQQQQWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWIIIITFUJUFHFHTFJHGKFJRDJTRFKUYGUGJHFJTYFYGJKHGJYG"
+    }
 // Concat or add params and return them
 
 
