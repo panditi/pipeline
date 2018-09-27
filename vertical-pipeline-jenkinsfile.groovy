@@ -87,7 +87,7 @@ node{
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
                                 echo "The parameter missing is: "
-                                MYLIST[element] >> output.txt
+                                echo ${MYLIST[element]} > output.txt
                                 sh "cut -d ':' -f 1 output.txt"
                                //echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
