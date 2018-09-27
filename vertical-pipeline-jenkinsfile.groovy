@@ -183,19 +183,7 @@ node{
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-        //github_repo/env/environment
-        sh '''
-          #!/bin/bash
-          ls && pwd
-          '''
-          def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/sss.tfvars"
-          //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
-            echo "${pwd()}"
-            if (exists) {
-                echo 'Yes'
-            } else {
-                echo 'No'
-            }
+
 
                       //def exists = fileExists "${pwd()}/env/sandbox/roles/backend.tfvars"
 //if [ -f "${PWD}/env/${params.environment}/${params.github_repo_path}/backend.tfvars"]
@@ -326,18 +314,33 @@ node{
 
 
     }
-    /*
+
     stage('Validate_Paths')
     {
         echo "=============================================="
         echo "Stage3:Validate paths"
         echo "=============================================="
-        sh 'cd pipeline || ls'
+        s
+        //github_repo/env/environment
+        sh '''
+          #!/bin/bash
+          ls && pwd
+          '''
+          def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
+          //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
+            echo "${pwd()}"
+            if (exists)
+            {
+                echo 'Yes'
+            }
+            else {
+                echo 'No'
+            }
 
     }
 
 
-    This will check the terraform code syntax
+  /*  This will check the terraform code syntax
    stage('Lint') {
             println "=============================================="
             println "Stage2:Lint"
