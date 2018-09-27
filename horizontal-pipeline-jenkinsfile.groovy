@@ -10,7 +10,7 @@ node{
     echo "${pwd()}"
     //pipefuncs = load "/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy"
     //pipeline/functions.groovy
-    def buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
+      buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
 
       build job: vertical_pipeline, parameters: [
           [$class: 'StringParameterValue', name: 'github_org', value: github_org],
