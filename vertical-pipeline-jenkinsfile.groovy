@@ -188,7 +188,7 @@ node{
           #!/bin/bash
           ls && pwd
           '''
-          def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
+          def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/sss.tfvars"
           //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
             echo "${pwd()}"
             if (exists) {
