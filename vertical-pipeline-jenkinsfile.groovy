@@ -92,10 +92,11 @@ node{
                                 echo $j >>temp.txt
                             }
                                 echo "The parameter missing is: "
-                                sh "cut -d ':' -f 1 temp.txt"
+                                cut -d ':' -f 1 temp.txt
+                                '''
                                //echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                              }'''
+                              }
                             else
                             {
                                  "The parameter missing is: "
