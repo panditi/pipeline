@@ -3,11 +3,11 @@ def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
-def environment = "sandbox"
+def environment = "ssandbox"
 
 node{
     stage("iac_iam_roles"){
-        github_repo = "iiac-iam"
+        github_repo = "iac-iam"
         github_repo_path = "roles"
 
  //"${/Users/sainavyapanditi/Documents/repos/pipeline/functions.groovy}"
