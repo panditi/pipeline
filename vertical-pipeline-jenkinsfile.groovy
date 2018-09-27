@@ -86,12 +86,16 @@ node{
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                            {
+                             sh '''
+                             for j in ${MYLIST[element]}
+                            {
+                                echo $j >>temp.txt
+                            }
                                 echo "The parameter missing is: "
-                                echo "${MYLIST[element]}" > output.txt
-                                sh "cut -d ':' -f 1 output.txt"
+                                sh "cut -d ':' -f 1 temp.txt"
                                //echo "The parameter missing is: ${s}"
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                              }
+                              }'''
                             else
                             {
                                  "The parameter missing is: "
