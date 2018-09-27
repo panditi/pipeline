@@ -187,7 +187,7 @@ node{
         sh '''
           #!/bin/bash
           ls &&
-          if [-f var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars]
+          if [-f 'var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars']
           then
               echo "File  found!"
 
