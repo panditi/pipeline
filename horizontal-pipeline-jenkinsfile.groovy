@@ -6,12 +6,12 @@ def github_repo_branch = "develop"
 def environment = "sandbox"
 
 node{
-    def pipefuncs
+    //def pipefuncs
     echo "${pwd()}"
     //def buildJob()
-    pipefuncs = readFile '/var/lib/jenkins/workspace/functions.groovy'
+    //pipefuncs = readFile '/var/lib/jenkins/workspace/functions.groovy'
     //pipeline/functions.groovy
-    /*  buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
+    buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
 
       build job: vertical_pipeline, parameters: [
           [$class: 'StringParameterValue', name: 'github_org', value: github_org],
@@ -21,7 +21,7 @@ node{
           [$class: 'StringParameterValue', name: 'environment', value: environment]
           ]
 
-    }*/
+    }
 
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
