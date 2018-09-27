@@ -199,8 +199,7 @@ node{
         echo "${pwd()}"
         sh "git checkout ${params.github_repo_branch}"
           echo "${pwd()}"*/
-        echo "${params.github_repo_branch}"
-        sh 'printenv'
+
         /*sh '''
           echo "Printing workspace+"
           echo $PWD
@@ -320,7 +319,7 @@ node{
         echo "=============================================="
         echo "Stage3:Validate paths"
         echo "=============================================="
-        s
+
         //github_repo/env/environment
         sh '''
           #!/bin/bash
@@ -336,6 +335,8 @@ node{
             else {
                 echo 'No'
             }
+            echo "${params.github_repo_branch}"
+            //sh 'printenv'
 
     }
 
