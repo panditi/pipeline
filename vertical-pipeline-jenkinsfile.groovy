@@ -188,14 +188,14 @@ node{
           #!/bin/bash
           ls && pwd
           '''
-          def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
+          def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/s.tfvars'
 
             if (exists) {
                 echo 'Yes'
             } else {
                 echo 'No'
             }
-          
+
 //if [ -f "${PWD}/env/${params.environment}/${params.github_repo_path}/backend.tfvars"]
 
         //def branch = "${params.github_repo_branch}"
