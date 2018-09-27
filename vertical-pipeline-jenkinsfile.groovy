@@ -330,12 +330,13 @@ node{
             echo "${pwd()}"
             if (exists)
             {
-                echo 'Yes'
+                echo "Environment path: ${params.environment} exists."
+                echo "Github repo path: ${params.github_repo_path} exists"
             }
             else {
                 echo 'No'
             }
-            echo "${params.github_repo_branch}"
+            //echo "${params.github_repo_branch}"
             //sh 'printenv'
 
     }
