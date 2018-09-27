@@ -183,16 +183,16 @@ node{
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-
+        //github_repo/env/environment
         sh '''
           #!/bin/bash
-          cd env && ls && pwd
-          if [ -d "$PWD/sandbox"]
+          ls && pwd
+          if [ -f "${PWD}/env/${params.environment}/${params.github_repo_path}/backend.tfvars"]
           then
-              echo "Directory  found!"
+              echo "File  found!"
 
           else
-              echo "Directory not found"
+              echo "File not found"
           fi
           '''
 
