@@ -186,8 +186,8 @@ node{
         //github_repo/env/environment
         sh '''
           #!/bin/bash
-          ls && pwd
-          if [ -f "${PWD}/env/${params.environment}/${params.github_repo_path}/backend.tfvars"]
+          ls &&
+          if [-f var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars]
           then
               echo "File  found!"
 
@@ -195,6 +195,7 @@ node{
               echo "File not found"
           fi
           '''
+//if [ -f "${PWD}/env/${params.environment}/${params.github_repo_path}/backend.tfvars"]
 
         //def branch = "${params.github_repo_branch}"
         /*echo "Listing contents in current branch"
