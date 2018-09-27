@@ -325,7 +325,7 @@ node{
           #!/bin/bash
           ls && pwd
           '''
-          def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
+          /*def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
           //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
             echo "${pwd()}"
             if (exists)
@@ -335,7 +335,26 @@ node{
             }
             else {
                 echo 'No'
-            }
+            }*/
+
+            def environmentExists = fileExists "${pwd()}/env/${params.environment}"
+            //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
+              echo "${pwd()}"
+              if (environmentExists)
+              {
+                  echo "Environment path: ${params.environment} exists."
+                  def githubrepopathExists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
+                  if (githubrepopathExists)
+                  {
+                      echo "Github repo path: ${params.github_repo_path} exists"
+                  }
+                  else{
+                      echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid github_repo_path"
+                  }
+              }
+              else {
+                  echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
+              }
             //echo "${params.github_repo_branch}"
             //sh 'printenv'
 
