@@ -8,7 +8,7 @@ def environment = "sandbox"
 node{
     def pipefuncs
     echo "${pwd()}"
-    def buildJob()
+    //def buildJob()
     pipefuncs = load "pipeline/functions.groovy"
     //pipeline/functions.groovy
       buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
