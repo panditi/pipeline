@@ -93,10 +93,22 @@ node{
                                       echo $j >tmp.txt
                                       cat tmp.txt
                                 done
-                                '''*/
+
+                                node {
+                                    try {
+                                        // do something that doesn't fail
+                                        echo "Im not going to fail"
+                                        currentBuild.result = 'SUCCESS'
+                                    } catch (Exception err) {
+                                        currentBuild.result = 'FAILURE'
+                                    }
+                                    echo "RESULT: ${currentBuild.result}"
+                                }*/
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                                //currentBuild.result = 'FAILURE'
-                                //echo "RESULT: ${currentBuild.result}"
+                                sh "exit 1"
+                                currentBuild.result = 'FAILURE'
+                                echo "RESULT: ${currentBuild.result}"
+                                //error 'Fail the Build'
 
                             }
                             else
@@ -277,10 +289,10 @@ node{
         echo "Stage2:Lint"
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
-        sh """
+        /*sh """
 
           echo ${pwd()}
-          cd /${params.github_repo}/env/${params.environment}/${params.github_repo_path}
+          cd  ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
           echo ${pwd()}
           """
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
