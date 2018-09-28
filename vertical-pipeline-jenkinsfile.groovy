@@ -295,7 +295,7 @@ node{
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
-            echo "printing backup-tf-state.sh : $PWD"
+            echo "printing backup-tf-state.sh"
             sh 'ls'
 
            // sh 'cat backup-tf-state.sh'
