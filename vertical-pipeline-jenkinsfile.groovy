@@ -95,17 +95,17 @@ node{
                                 done
                                 '''*/
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                                currentBuild.result = 'FAILURE'
-                                echo "RESULT: ${currentBuild.result}"
+                                //currentBuild.result = 'FAILURE'
+                                //echo "RESULT: ${currentBuild.result}"
 
                             }
                             else
                               {
                                 //echo "The parameter missing is: ${s}"
                                 echo "The parameter validated is: ${MYLIST[element]} "
-                                currentBuild.result = 'SUCCESS'
+                                //currentBuild.result = 'SUCCESS'
                             }
-                
+
                     }
 
            /* MYTESTLIST = []
