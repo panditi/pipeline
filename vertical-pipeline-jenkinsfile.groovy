@@ -97,7 +97,6 @@ node{
                                 echo "The parameter missing is: ${MYLIST[element]}"
                                 currentBuild.result = 'FAILURE'
                                 echo "RESULT: ${currentBuild.result}"
-}
                             }
                             else
                               {
