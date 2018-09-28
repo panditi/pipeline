@@ -188,45 +188,15 @@ node{
 
         //echo "${pwd()}"
 
-        def exists = fileExists "\$(pwd)/sandbox"
-        sh '''
-          if (exists == true)
-          {
-              echo "Yes sandbox exists"
-          }
-          else {
-              echo "No sandbox doesnot exist"
-          }
-          '''
-        echo "Done."*/
-
-
-
-
         /* dir('iac-iam/env/sandbox/roles/backend.tfvars') {
             echo " In dir block"
             sh 'cat backend.tfvars'
         }
-
-        /*sh '''if [ -d "iac-iam/env/sandbox/" ]
-        then
-            echo "Directory /iac-iam/env/sandbox/ exists."
-        else
-            echo "Error: Directory iac-iam/env/sandbox/ does not exists."
-        fi
-        '''
       dir("/${params.github_org}/${params.github_repo}/"){
           echo "entered dir block"
           sh 'ls'
           sh 'pwd'
         }
-        //echo "Current directory is: "
-        //pwd()
-       echo "changing to env directory"
-        sh 'cd env/'
-        echo "Listing the contents in env directory"
-        sh 'ls'
-        echo "Done with all work"
 
 
        echo "Checking if readme.md file exists or not"
@@ -237,10 +207,6 @@ node{
         } else {
             echo 'No'
         }
-         sh 'cat README.md'
-         echo "Checking if jenkins folder exists or not"
-         // Create a File object representing the folder 'A/B'
-        //def folder = new File('jenkins')
 
         echo "outside of second dir"
         dir('iac/jenkins/terraform/common/ecs_slaves/') {
@@ -270,17 +236,7 @@ node{
           #!/bin/bash
           ls && pwd
           '''
-          /*def exists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
-          //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
-            echo "${pwd()}"
-            if (exists)
-            {
-                echo "Environment path: ${params.environment} exists."
-                echo "Github repo path: ${params.github_repo_path} exists"
-            }
-            else {
-                echo 'No'
-            }*/
+
             //Defining a string variable to check if the provided environment path exist or not
             def environmentExists = fileExists "${pwd()}/env/${params.environment}"
             //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
@@ -307,22 +263,23 @@ node{
     }
 
 
-  /*  This will check the terraform code syntax
-   stage('Lint') {
-            println "=============================================="
-            println "Stage2:Lint"
+  //  This will check the terraform code syntax
+   stage('Lint')
+   {
+        echo "=============================================="
+        echo "Stage2:Lint"
+        echo "=============================================="
+        //terraform validate -var-file=path to env folder on your local/variables.tfvars
+        sh '''
+          terraform validate -var-file="${pwd()}/env/${params.environment}"
+        '''
 
-            //sh '''
-            //   set +e
-            //    echo "testing echo in an sh block that is not assigned to a variable"
-            //'''
 
 
 
-            println "=============================================="
     }
     //a compliance stub for future use
-    stage('Compliance') {
+    /*stage('Compliance') {
             echo "=============================================="
             println "Stage3:Compliance"
             echo "=============================================="
