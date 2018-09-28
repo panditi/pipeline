@@ -294,13 +294,19 @@ node{
         echo "Stage2:Lint"
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
-        sh """
+        dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
+            echo "printing backup-tf-state.sh"
+            ls
+            echo ${pwd()}
+           // sh 'cat backup-tf-state.sh'
+        }}
+        /*sh """
 
           echo ${pwd()}
           ls
           cd env/
           echo ${pwd()}
-          cd env/${params.environment}/${params.github_repo_path}
+          cd ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
           echo ${pwd()}
           """
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
