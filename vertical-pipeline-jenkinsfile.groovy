@@ -287,7 +287,7 @@ node{
    {
         echo "=============================================="
         echo "Stage2:Lint"
-        echo "=============================================="
+        echo "=============================================="}
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
         /*sh """
 
