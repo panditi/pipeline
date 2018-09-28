@@ -297,7 +297,7 @@ node{
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
             echo "printing backup-tf-state.sh"
             sh 'ls'
-            echo ${pwd()}
+            
            // sh 'cat backup-tf-state.sh'
         }}
         /*sh """
