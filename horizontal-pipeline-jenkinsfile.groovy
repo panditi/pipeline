@@ -1,5 +1,5 @@
 def vertical_pipeline = "vertical-github-pipeline"
-def github_org = ""
+def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
@@ -11,8 +11,6 @@ node{
     stage("iac_iam_roles"){
         github_repo = "iac-iam"
         github_repo_path = "roles"
-        def my_string_var = my_second_function("look at", " me")
-        def my_int_var = my_second_function(2, 2)
 
         //pipefuncs.buildJob(${params.github_org}, ${params.github_repo}, ${params.github_repo_path}, ${params.github_repo_branch}, ${params.environment})
         build job: vertical_pipeline, parameters: [
@@ -41,8 +39,4 @@ node{
             ]
     }
 
-}
-def my_second_function(param1, param2)
-{
-    return param1 + param2
 }

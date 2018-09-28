@@ -86,20 +86,18 @@ node{
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                             {
-                                sh '''
+                                /*sh '''
                                 for j in "${MYLIST[element]}"
                                 do
                                       echo $j
                                       echo $j >tmp.txt
                                       cat tmp.txt
                                 done
-                                '''
+                                '''*/
                                 echo "The parameter missing is: ${MYLIST[element]}"
                             }
                             else
-                            {
-                                 "The parameter missing is: "
-                                   sh "cut -d ':' -f 1 MYLIST[element]"
+                              {
                                 //echo "The parameter missing is: ${s}"
                                 echo "The parameter validated is: ${MYLIST[element]} "
                             }
@@ -176,9 +174,7 @@ node{
           ls -la
           echo \$(pwd)
           '''
-        //echo"entered into env dir"
-        //sh 'ls -al'
-        echo "Done."
+
         def source_folder_name = "${pwd()}/${params.environment}"
         //def source_folder = new File(source_folder_name)
         if (!source_folder_name.exists())
@@ -191,21 +187,7 @@ node{
         }
 
         //echo "${pwd()}"
-    /*
-        def myFolderPath = "/env/sandbox"
-        def myFolder = new Folder(myFolderPath)
 
-        // If it doesn't exist
-        if (myFolder.exists)
-        {
-
-          // Create all folders up-to and including B
-          echo "folder  exist"
-        }
-        else
-        {
-          echo "folder donot exists"
-        }
         def exists = fileExists "\$(pwd)/sandbox"
         sh '''
           if (exists == true)
