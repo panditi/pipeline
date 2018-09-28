@@ -278,14 +278,14 @@ node{
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
         sh """
-          cd ${params.github_repo}/env/${params.environment}
+
           echo ${pwd()}
-
-
+          cd ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
+          echo ${pwd()}
           """
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
-
+          //cd ${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}
 
 
 
