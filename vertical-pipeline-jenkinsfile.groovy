@@ -105,11 +105,10 @@ node{
                                     echo "RESULT: ${currentBuild.result}"
                                 }*/
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                                sh "exit 1"
                                 currentBuild.result = 'FAILURE'
                                 echo "RESULT: ${currentBuild.result}"
+                                sh "exit 1"
                                 //error 'Fail the Build'
-
                             }
                             else
                               {
@@ -270,11 +269,17 @@ node{
                   else{
                       echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
                       //fail the build
+                      currentBuild.result = 'FAILURE'
+                      echo "RESULT: ${currentBuild.result}"
+                      sh "exit 1"
                   }
               }
               else {
                   echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
                   //fail the build
+                  currentBuild.result = 'FAILURE'
+                  echo "RESULT: ${currentBuild.result}"
+                  sh "exit 1"
               }
             //echo "${params.github_repo_branch}"
             //sh 'printenv'
@@ -292,6 +297,11 @@ node{
         sh """
 
           echo ${pwd()}
+          ls
+          ls ${params.github_repo}
+          ls ${params.github_repo}/env
+          ls ${params.github_repo}/env/${params.environment}
+          ls ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
           cd  ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
           echo ${pwd()}
           """
