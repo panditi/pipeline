@@ -271,7 +271,7 @@ node{
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
         sh '''
-          terraform validate -var-file="${pwd()}/env/${params.environment}"
+          terraform validate -var-file="${pwd()}/env/${params.environment}/"
         '''
 
 
