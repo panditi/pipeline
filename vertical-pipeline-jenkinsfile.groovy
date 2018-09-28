@@ -277,15 +277,15 @@ node{
         echo "Stage2:Lint"
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
-      /*  sh """
-          cd ${params.github_repo}
+        sh """
+          cd ${params.github_repo}/env/${params.environment}
+          echo ${pwd()}
 
 
+          """
+          //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
+          //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
 
-
-          terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvarsl
-          terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
-        """*/
 
 
 
