@@ -73,7 +73,7 @@ node{
             echo "Entering my list"
             //creating list for parameters
             MYLIST = []
-                    MYLIST += "Github_org:${params.github_org}"
+                    MYLIST += "${params.github_org}"
                     MYLIST += "${params.github_repo}"
                     MYLIST += "${params.github_repo_path}"
                     MYLIST += "${params.github_repo_branch}"
@@ -96,13 +96,15 @@ node{
                                 '''*/
                                 echo "The parameter missing is: ${MYLIST[element]}"
                                 currentBuild.result = 'FAILURE'
-                                echo "RESULT: ${currentBuild.result}"
+
                             }
                             else
                               {
                                 //echo "The parameter missing is: ${s}"
                                 echo "The parameter validated is: ${MYLIST[element]} "
+                                currentBuild.result = 'SUCCESS'
                             }
+                            echo "RESULT: ${currentBuild.result}"
                     }
 
            /* MYTESTLIST = []
