@@ -298,7 +298,7 @@ node{
 
           echo ${pwd()}
           ls
-          cd env
+          cd env/
           echo ${pwd()}
           cd env/${params.environment}/${params.github_repo_path}
           echo ${pwd()}
