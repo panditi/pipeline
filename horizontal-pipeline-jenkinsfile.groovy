@@ -26,7 +26,7 @@ node{
       //  functions.executeVerticalPipeline(github_org,ygithub_repo,github_repo_path,wgithub_repo_branch,environment)
 
     }
-    stage("iac-network_base"){
+  /*  stage("iac-network_base"){
         github_repo = "iac-network"
         github_repo_path = "network-base"
 
@@ -37,6 +37,6 @@ node{
             [$class: 'StringParameterValue', name: 'github_repo_branch', value: github_repo_branch],
             [$class: 'StringParameterValue', name: 'environment', value: environment]
             ]
-    }
+    }*/
 
 }

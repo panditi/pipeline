@@ -94,7 +94,10 @@ node{
                                       cat tmp.txt
                                 done
                                 '''*/
-                                echo "The parameter missing is: ${MYLIST[element]}"
+                                echo "The parameter missing is: ${MYLIST[element
+                                currentBuild.result = 'FAILURE'
+                                echo "RESULT: ${currentBuild.result}"
+}
                             }
                             else
                               {
@@ -252,10 +255,12 @@ node{
                   }
                   else{
                       echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
+                      //fail the build
                   }
               }
               else {
                   echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
+                  //fail the build
               }
             //echo "${params.github_repo_branch}"
             //sh 'printenv'
@@ -270,9 +275,15 @@ node{
         echo "Stage2:Lint"
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
-        sh '''
-          terraform validate -var-file="${pwd()}/env/${params.environment}/"
-        '''
+      /*  sh """
+          cd ${params.github_repo}
+
+
+
+
+          terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvarsl
+          terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
+        """*/
 
 
 
