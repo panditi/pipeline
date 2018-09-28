@@ -298,11 +298,9 @@ node{
 
           echo ${pwd()}
           ls
-          ls ${params.github_repo}
-          ls ${params.github_repo}/env
-          ls ${params.github_repo}/env/${params.environment}
-          ls ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
-          cd ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
+
+
+          cd env/${params.environment}/${params.github_repo_path}
           echo ${pwd()}
           """
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
