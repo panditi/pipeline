@@ -94,7 +94,7 @@ node{
                                       cat tmp.txt
                                 done
                                 '''*/
-                                echo "The parameter missing is: ${MYLIST[element}"
+                                echo "The parameter missing is: ${MYLIST[element]}"
                                 currentBuild.result = 'FAILURE'
                                 echo "RESULT: ${currentBuild.result}"
 }
