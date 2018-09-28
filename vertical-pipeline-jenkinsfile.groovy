@@ -289,7 +289,7 @@ node{
         echo "Stage2:Lint"
         echo "=============================================="}
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
-        /*sh """
+        sh """
 
           echo ${pwd()}
           cd  ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
