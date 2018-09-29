@@ -87,9 +87,9 @@ node{
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                             {
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                                currentBuild.result = 'FAILURE'
-                                echo "RESULT: ${currentBuild.result}"
-                                sh "exit 1"
+                              //  currentBuild.result = 'FAILURE'
+                              //  echo "RESULT: ${currentBuild.result}"
+                              //  sh "exit 1"
                                 //error 'Fail the Build'
                             }
                             else
