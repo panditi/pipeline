@@ -19,57 +19,7 @@ node{
             echo "Github Repo Path: ${params.github_repo_path}"
             echo "Github branch: ${params.github_repo_branch}"
             echo "Environment: ${params.environment}"
-            //echo "Before if loop"
-            /*if("${params.github_org}" == null || "${params.github_org}".length() == 0){
-                echo "enteered first if loop"
-                echo "Github_org parameter is provided"
-                if("${params.github_repo_branch}" == null || "${params.github_repo_branch}".length() == 0){
-                     echo "enteered second if loop"
-                    echo "Github_repo_branch parameter is provided"
-                }
-                else{
-                     echo "enteered second else loop"
-                    echo "Missing parameter:github_repo_branch"
-                }
-            }
-            else{
-                 echo "enteered first else loop"
-                echo "Missing parameter:Github_org"
-            }
 
-
-
-
-
-
-            if("${params.github_org}" == null || "${params.github_org}".length() == 0 ){
-                echo "In if loop"
-                echo "Missing parameter: Please provide the github_org"
-            }
-            else{
-                echo "In else loop"
-                echo "Git hub org Parameter is provided"
-            }
-            if("${params.github_repo}" == null || "${params.github_repo}".length() == 0 ){
-                echo "In if loop"
-                echo "Missing parameter: Please provide the github_repo_"
-            }
-            else{
-                echo "In else loop"
-                echo "Git hub repo Parameter is provided"
-            }
-
-            def myParam = false
-            if (params.myParam != null){
-                    myParam = params.myParam
-            }
-            else{
-                echo "Missing parameter"
-            }
-            checkPath(github_repo_path, environment)
-
-           fileExists 'sainavya5/pipeline.git'
-             then echo "The file exists in given github repo path: $github_repo_path"*/
             echo "Entering my list"
             //creating list for parameters
             MYLIST = []
@@ -87,9 +37,9 @@ node{
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                             {
                                 echo "The parameter missing is: ${MYLIST[element]}"
-                              //  currentBuild.result = 'FAILURE'
-                              //  echo "RESULT: ${currentBuild.result}"
-                              //  sh "exit 1"
+                                currentBuild.result = 'FAILURE'
+                                echo "RESULT: ${currentBuild.result}"
+                                sh "exit 1"
                                 //error 'Fail the Build'
                             }
                             else
@@ -99,31 +49,6 @@ node{
                             }
 
                     }
-
-           /* MYTESTLIST = []
-                    MYTESTLIST += "params.github_org"
-                    MYTESTLIST += "params.github_repo"
-                    MYTESTLIST += "github_repo_path"
-                    MYTESTLIST += "github_repo_branch"
-                    MYTESTLIST += "environment"
-                    echo "Before mytestlist"
-                    for (def element = 0; element < MYTESTLIST.size(); element++) {
-                            //check if each parameter is provided
-                            echo "+++entered MYTESTLIST+++"
-                           if(MYTESTLIST[element] == null || MYTESTLIST[element].length() ==0)
-                           {
-                               echo "entered if loop inside mytestlist"
-                               sh 'println "The parameter missing is: ${MYTESTLIST[element]} " + MYTESTLIST[element]'
-                               //console.log("I would like to visit " + cities[i]);
-                           }
-                            else
-                            {
-                                echo "entered else loop inside mytestlist"
-                                echo "The parameter validated is: MYTESTLIST[element] "
-                            }
-                    }
-                         //  for (int i = 0; i < list.size(); i++) {
-        //sh "echo Hello ${list[i]}"
                           // def browsers = ['chrome', 'firefox']
                     //for (int i = 0; i < browsers.size(); ++i) {
                       //  echo "Testing the ${browsers[i]} browser"*/
@@ -143,58 +68,14 @@ node{
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
 
 
-                      //def exists = fileExists "${pwd()}/env/sandbox/roles/backend.tfvars"
-//if [ -f "${PWD}/env/${params.environment}/${params.github_repo_path}/backend.tfvars"]
-
-        //def branch = "${params.github_repo_branch}"
-        /*echo "Listing contents in current branch"
-        sh 'ls'
-        echo "Displaying contents of README.md file"
-        sh 'cat README.md'*/
-        /*sh "cd ~/${params.github_repo} || pwd"
-        echo "${pwd()}"
-        echo "Changing branch from master to develop"
-        echo "${pwd()}"
-        sh "git checkout ${params.github_repo_branch}"
-          echo "${pwd()}"*/
-
         /*sh '''
-          echo "Printing workspace+"
-          echo $PWD
-          "echo ${params.github_repo_branch}"
-          echo \$(pwd)
-          "git checkout ${params.github_repo_branch}"
-          echo "Listing the contents in develop branch"
+
           ls
           echo "${pwd()}"
           cd env
           ls -la
           echo \$(pwd)
           '''
-
-        def source_folder_name = "${pwd()}/${params.environment}"
-        //def source_folder = new File(source_folder_name)
-        if (!source_folder_name.exists())
-        {
-           echo "Source folder ${source_folder_name} does not exist"
-        }
-        else
-        {
-           echo "Source folder ${source_folder_name} exists"
-        }
-
-        //echo "${pwd()}"
-
-        /* dir('iac-iam/env/sandbox/roles/backend.tfvars') {
-            echo " In dir block"
-            sh 'cat backend.tfvars'
-        }
-      dir("/${params.github_org}/${params.github_repo}/"){
-          echo "entered dir block"
-          sh 'ls'
-          sh 'pwd'
-        }
-
 
        echo "Checking if readme.md file exists or not"
        def exists = fileExists 'README.md'
@@ -205,19 +86,12 @@ node{
             echo 'No'
         }
 
-        echo "outside of second dir"
+        echo "outside of  dir"
         dir('iac/jenkins/terraform/common/ecs_slaves/') {
             echo "entered directory block"
             sh 'ls'
             sh 'cat iac/jenkins/terraform/common/ecs_slaves/backend.tf'
-        }
-        dir('iac/global/terraform_backend/scripts'){
-            echo "printing backup-tf-state.sh"
-           // sh 'cat backup-tf-state.sh'
         }*/
-
-
-
 
 
     }
@@ -280,7 +154,7 @@ node{
             sh 'ls'
 
            // sh 'cat backup-tf-state.sh'
-        }}
+        }
         /*sh """
 
           echo ${pwd()}
@@ -292,7 +166,7 @@ node{
           """
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
-          //cd ${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}
+          //cd ${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}*/
 
 
 
