@@ -6,23 +6,14 @@ def github_repo_branch = "develop"
 def environment = "sandbox"
 */
 
-def defaults = [:]
-defaults['github_org'] = 'opploans'
-defaults['github_repo'] = ''
-defaults['github_repo_path'] = ''
-defaults['github_repo_branch'] = 'develop'
-defaults['environment'] = 'sandbox'
-
-
 
 
 node{
     echo "${pwd()}"
 
     stage("iac_iam_roles"){
-      defaults['github_repo'] = 'iac-iam'
-      defaults['github_repo_path'] = 'roles'
-      /*  github_repo = "iac-iam"
+      /*
+        github_repo = "iac-iam"
         github_repo_path = "roles"
       */
         //pipefuncs.buildJob(${params.github_org}, ${params.github_repo}, ${params.github_repo_path}, ${params.github_repo_branch}, ${params.environment})

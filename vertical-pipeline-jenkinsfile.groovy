@@ -1,3 +1,11 @@
+def defaults = [:]
+defaults['github_org'] = 'opploans'
+defaults['github_repo'] = 'iac-iam'
+defaults['github_repo_path'] = 'roles'
+defaults['github_repo_branch'] = 'develop'
+defaults['environment'] = 'sandbox'
+
+
 def github_org = params.gitub_org == null ? defaults['opploans'] : params.github_org,
 def github_repo = params.github_repo == null ? defaults['iac-iam'] : params.github_repo,
 def github_repo_path = params.gitub_repo_path == null ? defaults['roles'] : params.github_repo_path,
