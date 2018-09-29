@@ -94,7 +94,6 @@ node{
                             }
                             else
                               {
-                                //echo "The parameter missing is: ${s}"
                                 echo "The parameter validated is: ${MYLIST[element]} "
                                 //currentBuild.result = 'SUCCESS'
                             }
