@@ -4,8 +4,6 @@ def github_repo_path = params.gitub_repo_path == null ? defaults['roles'] : para
 def github_repo_branch = params.github_repo_branch == null ? defaults['develop'] : params.github_repo_branch,
 def environment = params.environment == null ? defaults['sandbox'] : params.environment,
 
-def anything = params.anything == null ? defaults['anything'] : params.anything
-
 properties([
     [
         $class: 'ParametersDefinitionProperty',
@@ -40,12 +38,6 @@ properties([
                 defaultValue: sandbox,
                 required    : true
             ],
-            [
-               $class      : 'StringParameterDefinition',
-               name        : 'anything',
-               defaultValue: anything,
-               required    : false
-           ],
         ]
     ]
 ])
