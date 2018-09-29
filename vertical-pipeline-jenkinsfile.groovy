@@ -1,6 +1,63 @@
+def github_org = params.gitub_org == null ? defaults['opploans'] : params.github_org,
+def github_repo = params.github_repo == null ? defaults['iac-iam'] : params.github_repo,
+def github_repo_path = params.gitub_repo_path == null ? defaults['roles'] : params.github_repo_path,
+def github_repo_branch = params.github_repo_branch == null ? defaults['develop'] : params.github_repo_branch,
+def environment = params.environment == null ? defaults['sandbox'] : params.environment,
+
+def anything = params.anything == null ? defaults['anything'] : params.anything
+
+properties([
+    [
+        $class: 'ParametersDefinitionProperty',
+        parameterDefinitions: [
+            [
+                $class      : 'StringParameterDefinition',
+                name        : 'github_org',
+                defaultValue: opploans
+                required    : true
+            ],
+            [
+                $class      : 'StringParameterDefinition',
+                name        : 'github_repo',
+                defaultValue: iac-iam,
+                required    : true
+            ],
+            [
+                $class      : 'StringParameterDefinition',
+                name        : 'github_repo_path',
+                defaultValue: roles,
+                required    : true
+            ],
+            [
+                $class      : 'StringParameterDefinition',
+                name        : 'github_repo_branch',
+                defaultValue: develop,
+                required    : true
+            ],
+            [
+                $class      : 'StringParameterDefinition',
+                name        : 'environment',
+                defaultValue: sandbox,
+                required    : true
+            ],
+            [
+               $class      : 'StringParameterDefinition',
+               name        : 'anything',
+               defaultValue: anything,
+               required    : false
+           ],
+        ]
+    ]
+])
+
+assert github_org.trim() != "" : "github_org not defined"
+assert github_repo.trim() != "" : "github_repo not defined"
+assert github_repo_path.trim() != "" : "github_repo_path not defined"
+assert github_repo_branch.trim() != "" : "github_repo_branch not defined"
+assert environment.trim() != "" : "environment not defined"
 node{
     //defining the parameters
-    parameters{
+  /*  parameters{
             stringParam(defaultValue: '', description: '', name: 'github_org')
             stringParam(defaultValue: '', description: '', name: 'github_repo')
             stringParam(defaultValue: '', description: '', name: 'github_repo_path')
@@ -8,7 +65,7 @@ node{
             stringParam(defaultValue: '', description: '', name: 'environment')
             //choice(choices: ['master', 'develop'], description: '', name: 'github_repo_branch')
              }
-
+*/
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
             echo "=============================================="
@@ -22,7 +79,7 @@ node{
 
             echo "Entering my list"
             //creating list for parameters
-            MYLIST = []
+          /*  MYLIST = []
                     MYLIST += "${params.github_org}"
                     MYLIST += "${params.github_repo}"
                     MYLIST += "${params.github_repo_path}"
