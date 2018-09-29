@@ -7,10 +7,10 @@ defaults['environment'] = 'sandbox'
 
 
 def github_org = params.gitub_org == null ? defaults['opploans'] : params.github_org,
-def github_repo = params.github_repo == null ? defaults['iac-iam'] : params.github_repo,
-def github_repo_path = params.gitub_repo_path == null ? defaults['roles'] : params.github_repo_path,
-def github_repo_branch = params.github_repo_branch == null ? defaults['develop'] : params.github_repo_branch,
-def environment = params.environment == null ? defaults['sandbox'] : params.environment,
+    github_repo = params.github_repo == null ? defaults['iac-iam'] : params.github_repo,
+    github_repo_path = params.gitub_repo_path == null ? defaults['roles'] : params.github_repo_path,
+    github_repo_branch = params.github_repo_branch == null ? defaults['develop'] : params.github_repo_branch,
+    environment = params.environment == null ? defaults['sandbox'] : params.environment,
 
 properties([
     [
