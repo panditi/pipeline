@@ -86,24 +86,6 @@ node{
                             // Split MYLIST[element] on the colon if the second value trimmed is empty!
                            if(MYLIST[element] == null || MYLIST[element].length() ==0)
                             {
-                                /*sh '''
-                                for j in "${MYLIST[element]}"
-                                do
-                                      echo $j
-                                      echo $j >tmp.txt
-                                      cat tmp.txt
-                                done
-
-                                node {
-                                    try {
-                                        // do something that doesn't fail
-                                        echo "Im not going to fail"
-                                        currentBuild.result = 'SUCCESS'
-                                    } catch (Exception err) {
-                                        currentBuild.result = 'FAILURE'
-                                    }
-                                    echo "RESULT: ${currentBuild.result}"
-                                }*/
                                 echo "The parameter missing is: ${MYLIST[element]}"
                                 currentBuild.result = 'FAILURE'
                                 echo "RESULT: ${currentBuild.result}"
