@@ -80,29 +80,22 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-
-        if (pull_request) {
-            checkout([$class: 'GitSCM',
-            branches: [[name: "origin-pull/pull/${GITHUB_PR_NUMBER}/merge"]],
+        def repoExists = fileExists "${pwd()}/${params.github_repo}"
+        if(repoExists)
+        {
+            sh 'git pull'
+        }
+        else
+        {
+            checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
             doGenerateSubmoduleConfigurations: false,
-            extensions: [], submoduleCfg: [],
+            extensions: [],
+            submoduleCfg: [],
             userRemoteConfigs: [[
                 credentialsId: 'origin',
-                name: 'origin-pull',
-                url: "https://github.com/${params.github_org}/${params.github_repo}.git",
-                refspec: "+refs/pull/${GITHUB_PR_NUMBER}/merge:refs/remotes/origin-pull/pull/${GITHUB_PR_NUMBER}/merge"]]
-            ])
-        }
-        else {
-            checkout([
-            $class: 'GitSCM',
-            branches: [[name: "*/master"]],
-            doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [],
-            userRemoteConfigs: [[
-                credentialsId: 'origin',
-                url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]
-            ])
-        }
+                url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+            ]]
+        ])
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
