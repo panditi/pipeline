@@ -80,7 +80,8 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-        sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
+        sh 'echo $PWD'
+sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf * && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
         //sh "mkdir -p ${pwd()}/${github_repo}"
         /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
