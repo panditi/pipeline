@@ -82,7 +82,7 @@ node{
         sh 'echo $PWD'
 
         //sh "mkdir -p ${pwd()}/${github_repo}"
-        /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
+        def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
             echo "entered if loop of repoExists"
@@ -91,7 +91,6 @@ node{
         else
         {
             echo "entered else loop of repoExists"
-*/
 
           dir ("${pwd()}"){
 
@@ -105,7 +104,7 @@ node{
                     ]]
                 ])
               }
-
+        }
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
@@ -208,7 +207,7 @@ node{
 
 
 
-    
+
     //a compliance stub for future use
     /*stage('Compliance') {
             echo "=============================================="
