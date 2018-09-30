@@ -14,59 +14,48 @@ node{
             echo "=============================================="
             echo "Stage1:Validation"
             echo "=============================================="
+            //Dislay the name/value of all parameters
             echo "Github Org: ${params.github_org}"
             echo "Github Repo: ${params.github_repo}"
             echo "Github Repo Path: ${params.github_repo_path}"
             echo "Github branch: ${params.github_repo_branch}"
             echo "Environment: ${params.environment}"
 
-            echo "Entering my list"
+
             //creating list for parameters
-            MYLIST = []
-                    MYLIST += "${params.github_org}"
-                    MYLIST += "${params.github_repo}"
-                    MYLIST += "${params.github_repo_path}"
-                    MYLIST += "${params.github_repo_branch}"
-                    MYLIST += "${params.environment}"
+
                     //Dislay the parameter value of the parameter named "myparam"
                             //println "${params.myparam}"
 
-                            //Dislay the name/value of all parameters
+
                             for(entry in params) {
                               if(entry.value == null || entry.value.length() == 0)
                               {
-                                echo "printing missing key"
-                                println "printing missing key: " + entry.key
+                                println "The parameter missing is: " + entry.key "Please provide a valure for parameter" 
 
                                 //println entry.key
                               }
                               else
                               {
-                                println entry.value
-
+                                println "The parameter provided is: " + entry.key "The value of the parameter provided is: " + entry.value
                                 //println entry.value
                               }
                             }
 
                             echo "checking"
+                /* echo "Entering my list"
+                   MYLIST = []
+                             MYLIST += "${params.github_org}"
+                             MYLIST += "${params.github_repo}"
+                             MYLIST += "${params.github_repo_path}"
+                             MYLIST += "${params.github_repo_branch}"
+                             MYLIST += "${params.environment}"
+                  for (def element = 0; element < MYLIST.size(); element++) {
+                  //check if each parameter is provided
 
-                            /*  if(MYLIST[element] == null || MYLIST[element].length() ==0)
-                              {
-                                  echo "Missing parameter is:"
-                                  println entry.key
-                              }
-                              else
-                              {
-                                echo "The parameter validated is:"
-                                println entry.value
-                              }
-                            }
-                  /*  for (def element = 0; element < MYLIST.size(); element++) {
-                            //check if each parameter is provided
-
-                            //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
-                            // Split MYLIST[element] on the colon if the second value trimmed is empty!
-                           if(MYLIST[element] == null || MYLIST[element].length() ==0)
+                  //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
+                  // Split MYLIST[element] on the colon if the second value trimmed is empty!
+                      if(MYLIST[element] == null || MYLIST[element].length() ==0)
                             {
                                 echo "The parameter missing is: ${MYLIST[element]}"
                                 currentBuild.result = 'FAILURE'
