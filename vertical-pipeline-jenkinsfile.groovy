@@ -75,14 +75,12 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-        dir('/var/lib/jenkins/workspace')
-        {
         checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
         doGenerateSubmoduleConfigurations: false,
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-        }
+        
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
