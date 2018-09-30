@@ -4,13 +4,13 @@ def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
 def environment = "sandbox"
-
+def buildJob()
 
 
 node{
     echo "${pwd()}"
     // executeVerticalPipeline
-    def buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
+    buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment){
 
       build job: vertical_pipeline, parameters: [
           [$class: 'StringParameterValue', name: 'github_org', value: github_org],
