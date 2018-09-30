@@ -103,7 +103,7 @@ node{
                     ]]
                 ])
               }
-        }
+        
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
