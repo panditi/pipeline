@@ -33,7 +33,10 @@ node{
 
                             //Dislay the name/value of all parameters
                             for(entry in params) {
-                              if(MYLIST[element] == null || MYLIST[element].length() ==0)
+                                println entry.key
+                                println entry.value
+                            }
+                            /*  if(MYLIST[element] == null || MYLIST[element].length() ==0)
                               {
                                   echo "Missing parameter is:"
                                   println entry.key
