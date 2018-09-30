@@ -88,7 +88,10 @@ node{
             echo "entered if loop of repoExists"
             dir ("${pwd()}"){
               echo "${pwd()}"
-              sh "git clone https://github.com/${params.github_org}/${params.github_repo}.git"
+              sh """
+                    echo "${pwd()}"
+                  git clone https://github.com/${params.github_org}/${params.github_repo}.git
+                  """
               echo "${pwd()}"
                //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
                /*doGenerateSubmoduleConfigurations: false,
