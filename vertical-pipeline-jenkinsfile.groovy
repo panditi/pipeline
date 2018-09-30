@@ -80,12 +80,23 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-        sh 'echo $PWD'
+        sh "echo ${env.WORKSPACE}"
         checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
         doGenerateSubmoduleConfigurations: false,
         extensions: [],
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
+
+        sh "echo ${env.WORKSPACE}"
+        //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
+        /*doGenerateSubmoduleConfigurations: false,
+        extensions: [[$class: 'CleanBeforeCheckout']],
+        submoduleCfg: [],
+        userRemoteConfigs: [[
+            credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+            url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+            ]]
+        ])*/
 
 
 //sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf * && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
