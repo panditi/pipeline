@@ -33,18 +33,17 @@ node{
 
                             //Dislay the name/value of all parameters
                             for(entry in params) {
-                              if(entry.value == null || entry.length() == 0)
+                              if(entry == null || entry.length() == 0)
                               {
                                 echo "printing missing key"
-                                a = entry.getkey()
-                                println a
+                                println entry.key
+
                                 //println entry.key
                               }
                               else
                               {
-                                b= entry.getvalue()
-                                echo "printing valid value"
-                                println b
+                                println entry.value
+
                                 //println entry.value
                               }
                             }
