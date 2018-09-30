@@ -86,7 +86,11 @@ node{
         if(repoExists)
         {
             echo "entered if loop of repoExists"
-
+            dir ("${pwd()}"){
+              echo "${pwd()}"
+              sh 'cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git'
+              echo "${pwd()}"
+            }
                //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
                /*doGenerateSubmoduleConfigurations: false,
                extensions: [],
@@ -96,7 +100,7 @@ node{
                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                    ]]
                ])*/
-             
+
         }
         else
         {
