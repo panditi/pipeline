@@ -1,4 +1,4 @@
-def vertical_pipeline = "vertical-github-pipeline"
+//def vertical_pipeline = "vertical-github-pipeline"
 def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
