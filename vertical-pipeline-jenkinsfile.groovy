@@ -80,9 +80,9 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-
+        sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
         //sh "mkdir -p ${pwd()}/${github_repo}"
-        def repoExists = fileExists "${pwd()}/${params.github_repo}"
+        /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
             echo "entered if loop of repoExists"
@@ -90,16 +90,16 @@ node{
               echo "${pwd()}"
               sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
               echo "${pwd()}"
-            }
+            }*/
                //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-               /*doGenerateSubmoduleConfigurations: false,
-               extensions: [],
+               //doGenerateSubmoduleConfigurations: false,
+               /*extensions: [],
                submoduleCfg: [],
                userRemoteConfigs: [[
                    credentialsId: 'origin',
                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                    ]]
-               ])*/
+               ])
 
         }
         else
@@ -109,7 +109,7 @@ node{
               echo "${pwd()}"
               sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
               echo "${pwd()}"
-            }
+            }*/
         //  dir ("${pwd()}"){
 
           //      checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
@@ -121,8 +121,8 @@ node{
                     url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                     ]]
                 ])
-              }*/
-        }
+              }
+        }*/
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
