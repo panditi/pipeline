@@ -93,9 +93,9 @@ node{
           '''*/
 
 
-    }
+    
 
-    stage('Validate Paths')
+    /*stage('Validate Paths')
     {
         echo "=============================================="
         echo "Stage3:Validate Paths"
@@ -152,7 +152,7 @@ node{
       But this code is running on aws server. So, if you connect to server and type pwd, you will get /home/ec2-user.
       This code clones git repo iac-iam in the path /var/lib/jenkins/workspace/vertical-github-pipeline.
       So, if you do cd iac-iam/env/sandbox, it is showing only roles folder which is different from the exact repo in git.
-      What is the problem?*/
+      What is the problem?
 
         echo "${pwd()}"
 
@@ -166,7 +166,7 @@ node{
             echo "testing if it is changing directory"
             echo "${pwd()}"
             sh 'ls'
-        }
+        }*/
         /*sh """
 
           echo ${pwd()}

@@ -1,8 +1,8 @@
 //def vertical_pipeline = "vertical-github-pipeline"
-def github_org = "opploans"
+def github_org = "sainavya5"
 def github_repo = ""
 def github_repo_path = ""
-def github_repo_branch = "develop"
+def github_repo_branch = "master"
 def environment = "sandbox"
 
 
@@ -11,10 +11,10 @@ node{
     echo "${pwd()}"
     // executeVerticalPipeline
 
-    stage("iac_iam_roles"){
-        github_repo = "iac-iam"
+    stage("iac-iam-roles"){
+        github_repo = "pipeline"
         github_repo_path = "roles"
-          sum(10,5);
+          //sum(10,5);
         buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
         //pipefuncs.buildJob(${params.github_org}, ${params.github_repo}, ${params.github_repo_path}, ${params.github_repo_branch}, ${params.environment})
       /*  build job: vertical_pipeline, parameters: [
@@ -60,8 +60,8 @@ def vertical_pipeline = "vertical-github-pipeline"
      [$class: 'StringParameterValue', name: 'environment', value: environment]
      ]
 }
-def sum(int a,int b) {
+/*def sum(int a,int b) {
       int c = a+b;
       echo "Printing............................................................................................................."
       println(c);
-   }
+   }*/
