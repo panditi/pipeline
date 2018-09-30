@@ -10,6 +10,5 @@ def buildJob(github_org, github_repo, github_repo_path, github_repo_branch, envi
       ]
 
 }
-return this;
 
 // executeVerticalPipeline

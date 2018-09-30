@@ -7,8 +7,6 @@ node{
             stringParam(defaultValue: '', description: '', name: 'github_repo_path')
             stringParam(defaultValue: '', description: '', name: 'github_repo_branch')
             stringParam(defaultValue: '', description: '', name: 'environment')
-
-            //choice(choices: ['master', 'develop'], description: '', name: 'github_repo_branch')
              }
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
@@ -35,8 +33,8 @@ node{
                 }
             }
 
-            echo "Done. validating parameters"
-            echo "End of Stage1 : Validation"
+            echo "Done. Validating parameters"
+            echo "End of Stage1 : Validation."
                 // creating list for parameters
                 /* echo "Entering my list"
                    MYLIST = []
@@ -72,9 +70,9 @@ node{
 
     }
 
-    stage('checkout'){
+    stage('Checkout SCM'){
         echo "=============================================="
-        echo "Stage2:Checkout"
+        echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
         checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
@@ -83,7 +81,8 @@ node{
         submoduleCfg: [],
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
 
-
+        echo "Done. Cloning git repository"
+        echo "End of Stage2 : Checkout SCM."
         /*sh '''
 
           ls
@@ -96,10 +95,10 @@ node{
 
     }
 
-    stage('Validate_Paths')
+    stage('Validate Paths')
     {
         echo "=============================================="
-        echo "Stage3:Validate paths"
+        echo "Stage3:Validate Paths"
         echo "=============================================="
 
         //github_repo/env/environment
@@ -136,8 +135,8 @@ node{
                   echo "RESULT: ${currentBuild.result}"
                   sh "exit 1"
               }
-            //echo "${params.github_repo_branch}"
-            //sh 'printenv'
+              echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
+              echo "End of Stage3 : Validate Paths."
 
     }
 
@@ -162,7 +161,6 @@ node{
             echo "${pwd()}"
             echo "Listing contents and running terraform validate command"
             sh 'ls -al'
-
         }
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
             echo "testing if it is changing directory"
