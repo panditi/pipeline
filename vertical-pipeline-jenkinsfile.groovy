@@ -35,7 +35,8 @@ node{
                 }
             }
 
-                            echo "checking"
+            echo "Done. validating parameters"
+            echo "End of Stage1 : Validation"
                 // creating list for parameters
                 /* echo "Entering my list"
                    MYLIST = []
