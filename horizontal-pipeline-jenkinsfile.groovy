@@ -1,10 +1,10 @@
 def vertical_pipeline = "vertical-github-pipeline"
-/*def github_org = "opploans"
+def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
 def environment = "sandbox"
-*/
+
 
 
 
@@ -12,10 +12,8 @@ node{
     echo "${pwd()}"
 
     stage("iac_iam_roles"){
-      /*
         github_repo = "iac-iam"
         github_repo_path = "roles"
-      */
         //pipefuncs.buildJob(${params.github_org}, ${params.github_repo}, ${params.github_repo_path}, ${params.github_repo_branch}, ${params.environment})
         build job: vertical_pipeline, parameters: [
             [$class: 'StringParameterValue', name: 'github_org', value: github_org],

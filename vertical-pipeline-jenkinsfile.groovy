@@ -1,63 +1,7 @@
-def defaults = [:]
-defaults['github_org'] = 'opploans'
-defaults['github_repo'] = 'iac-iam'
-defaults['github_repo_path'] = 'roles'
-defaults['github_repo_branch'] = 'develop'
-defaults['environment'] = 'sandbox'
 
-
-def github_org = params.gitub_org == null ? defaults['opploans'] : params.github_org,
-    github_repo = params.github_repo == null ? defaults['iac-iam'] : params.github_repo,
-    github_repo_path = params.gitub_repo_path == null ? defaults['roles'] : params.github_repo_path,
-    github_repo_branch = params.github_repo_branch == null ? defaults['develop'] : params.github_repo_branch,
-    environment = params.environment == null ? defaults['sandbox'] : params.environment,
-
-properties([
-    [
-        $class: 'ParametersDefinitionProperty',
-        parameterDefinitions: [
-            [
-                $class      : 'StringParameterDefinition',
-                name        : 'github_org',
-                defaultValue: opploans
-                required    : true
-            ],
-            [
-                $class      : 'StringParameterDefinition',
-                name        : 'github_repo',
-                defaultValue: iac-iam,
-                required    : true
-            ],
-            [
-                $class      : 'StringParameterDefinition',
-                name        : 'github_repo_path',
-                defaultValue: roles,
-                required    : true
-            ],
-            [
-                $class      : 'StringParameterDefinition',
-                name        : 'github_repo_branch',
-                defaultValue: develop,
-                required    : true
-            ],
-            [
-                $class      : 'StringParameterDefinition',
-                name        : 'environment',
-                defaultValue: sandbox,
-                required    : true
-            ],
-        ]
-    ]
-])
-
-assert github_org.trim() != "" : "github_org not defined"
-assert github_repo.trim() != "" : "github_repo not defined"
-assert github_repo_path.trim() != "" : "github_repo_path not defined"
-assert github_repo_branch.trim() != "" : "github_repo_branch not defined"
-assert environment.trim() != "" : "environment not defined"
 node{
     //defining the parameters
-  /*  parameters{
+    parameters{
             stringParam(defaultValue: '', description: '', name: 'github_org')
             stringParam(defaultValue: '', description: '', name: 'github_repo')
             stringParam(defaultValue: '', description: '', name: 'github_repo_path')
@@ -65,7 +9,6 @@ node{
             stringParam(defaultValue: '', description: '', name: 'environment')
             //choice(choices: ['master', 'develop'], description: '', name: 'github_repo_branch')
              }
-*/
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
             echo "=============================================="
@@ -79,7 +22,7 @@ node{
 
             echo "Entering my list"
             //creating list for parameters
-          /*  MYLIST = []
+            MYLIST = []
                     MYLIST += "${params.github_org}"
                     MYLIST += "${params.github_repo}"
                     MYLIST += "${params.github_repo_path}"
@@ -132,23 +75,7 @@ node{
           cd env
           ls -la
           echo \$(pwd)
-          '''
-
-       echo "Checking if readme.md file exists or not"
-       def exists = fileExists 'README.md'
-
-        if (exists) {
-            echo 'Yes'
-        } else {
-            echo 'No'
-        }
-
-        echo "outside of  dir"
-        dir('iac/jenkins/terraform/common/ecs_slaves/') {
-            echo "entered directory block"
-            sh 'ls'
-            sh 'cat iac/jenkins/terraform/common/ecs_slaves/backend.tf'
-        }*/
+          '''*/
 
 
     }
@@ -206,8 +133,9 @@ node{
         echo "Stage2:Lint"
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
+        echo "${pwd()}"
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
-            echo "printing backup-tf-state.sh"
+            echo "testing if it is changing directory"
             sh 'ls'
 
            // sh 'cat backup-tf-state.sh'
