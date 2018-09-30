@@ -33,7 +33,7 @@ node{
 
                             //Dislay the name/value of all parameters
                             for(entry in params) {
-                              if(entry.value == null)
+                              if(entry.value == null || entry.va;ue.length() == 0)
                               {
                                 echo "printing missing key"
                                 println entry.key
