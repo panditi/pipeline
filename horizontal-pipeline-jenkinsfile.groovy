@@ -59,7 +59,7 @@ node{
      [$class: 'StringParameterValue', name: 'environment', value: environment]
      ]
 }*/
-static void sum(int a,int b) {
+def sum(int a,int b) {
       int c = a+b;
       echo "Printing............................................................................................................."
       println(c);
