@@ -36,7 +36,7 @@ node{
                               if(entry.value == null || entry.value.length() == 0)
                               {
                                 echo "printing missing key"
-                                println "printing missing key: " entry.key
+                                println "printing missing key: " + entry.key
 
                                 //println entry.key
                               }
