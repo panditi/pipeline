@@ -136,9 +136,13 @@ node{
         echo "${pwd()}"
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
             echo "testing if it is changing directory"
+            echo "${pwd()}"
             sh 'ls'
-
-           // sh 'cat backup-tf-state.sh'
+        }
+        dir("${params.github_repo}/env/${params.environment}"){
+            echo "testing if it is changing directory"
+            echo "${pwd()}"
+            sh 'ls'
         }
         /*sh """
 
