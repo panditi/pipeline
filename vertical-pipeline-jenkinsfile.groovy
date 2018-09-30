@@ -80,12 +80,7 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-        def githubrepopathExists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }"
-        if (githubrepopathExists)
-        {
-            echo "Github repo path: ${params.github_repo_path} exists"
-        }
-        else{
+      
         def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
