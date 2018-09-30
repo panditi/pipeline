@@ -81,7 +81,7 @@ def notifyBuild(String buildStatus = 'STARTED') {
     }
 
     // Send notifications
-    slackSend (channel: '@me', color: colorCode, message: summary)
+    //slackSend (channel: '@me', color: colorCode, message: summary)
 }
 /*def buildJob(String github_org, String github_repo, String github_repo_path, String github_repo_branch, String environment){
 
