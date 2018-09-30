@@ -1,8 +1,8 @@
 //def vertical_pipeline = "vertical-github-pipeline"
-def github_org = "sainavya5"
+def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
-def github_repo_branch = "master"
+def github_repo_branch = "develop"
 def environment = "sandbox"
 def s3_bucket = ""
 def s3_key = ""
@@ -12,7 +12,7 @@ node{
     // executeVerticalPipeline
 
     stage("iac-iam-roles"){
-        github_repo = "pipeline"
+        github_repo = "iac-iam"
         github_repo_path = "roles"
           //sum(10,5);
         buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
