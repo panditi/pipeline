@@ -80,7 +80,7 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-        sh "mkdir -p ${PWD()}\${github_repo}"
+        sh "mkdir -p ${pwd()}\${github_repo}"
         def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
