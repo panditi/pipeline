@@ -1,12 +1,17 @@
+pull_request = false
 
 node{
     //defining the parameters
     parameters{
-            stringParam(defaultValue: '', description: '', name: 'github_org')
-            stringParam(defaultValue: '', description: '', name: 'github_repo')
-            stringParam(defaultValue: '', description: '', name: 'github_repo_path')
-            stringParam(defaultValue: '', description: '', name: 'github_repo_branch')
-            stringParam(defaultValue: '', description: '', name: 'environment')
+            stringParam(defaultValue: '', description: 'User or organization for the github repo', name: 'github_org')
+            stringParam(defaultValue: '', description: 'Repo where code is stored', name: 'github_repo')
+            stringParam(defaultValue: '', description: 'Root of terraform code inside the githb_repo', name: 'github_repo_path')
+            stringParam(defaultValue: '', description: 'Current branch of github_repo', name: 'github_repo_branch')
+            stringParam(defaultValue: '', description: 'Environment name of github_repo', name: 'environment')
+            stringParam(defaultValue: '', description: 'Name of S3 bucket for terraform state files', name: 's3_bucket')
+            stringParam(defaultValue: '', description: 'Key/path to store this enviroment\'s state file in s3; the "name" of the environment', name: 's3_key')
+
+
              }
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation') {
@@ -75,14 +80,29 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
-        dir('//var/lib/jenkins/workspace')
-        {
-        checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-        doGenerateSubmoduleConfigurations: false,
-        extensions: [],
-        submoduleCfg: [],
-        userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
-      }
+
+        if (pull_request) {
+            checkout([$class: 'GitSCM',
+            branches: [[name: "origin-pull/pull/${GITHUB_PR_NUMBER}/merge"]],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [], submoduleCfg: [],
+            userRemoteConfigs: [[
+                credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+                name: 'origin-pull',
+                url: "https://github.com/${params.github_org}/${params.github_repo}.git",
+                refspec: "+refs/pull/${GITHUB_PR_NUMBER}/merge:refs/remotes/origin-pull/pull/${GITHUB_PR_NUMBER}/merge"]]
+            ])
+        }
+        else {
+            checkout([
+            $class: 'GitSCM',
+            branches: [[name: "*/master"]],
+            doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [],
+            userRemoteConfigs: [[
+                credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+                url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]
+            ])
+        }
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''

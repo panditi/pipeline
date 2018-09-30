@@ -4,8 +4,8 @@ def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "master"
 def environment = "sandbox"
-
-
+def s3_bucket = ""
+def s3_key = ""
 
 node{
     echo "${pwd()}"
