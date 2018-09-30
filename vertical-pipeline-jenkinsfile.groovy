@@ -120,7 +120,7 @@ node{
 
 
 }
-    stage('Validate Paths')
+  /*  stage('Validate Paths')
     {
         echo "=============================================="
         echo "Stage3:Validate Paths"
@@ -170,14 +170,14 @@ node{
    stage('Lint')
    {
         echo "=============================================="
-        echo "Stage2:Lint"
+        echo "Stage4:Lint"
         echo "=============================================="
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
   /*  Note: In the git repo iac-iam, if you go to env/sandbox and see contents,you will find roles,vault,backend.tfvars, terraform.tfvars.
       But this code is running on aws server. So, if you connect to server and type pwd, you will get /home/ec2-user.
       This code clones git repo iac-iam in the path /var/lib/jenkins/workspace/vertical-github-pipeline.
       So, if you do cd iac-iam/env/sandbox, it is showing only roles folder which is different from the exact repo in git.
-      What is the problem?*/
+      What is the problem?
 
         echo "${pwd()}"
 
@@ -208,7 +208,7 @@ node{
 
 
 
-    }
+    
     //a compliance stub for future use
     /*stage('Compliance') {
             echo "=============================================="
