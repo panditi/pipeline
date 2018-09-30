@@ -36,6 +36,11 @@ node{
                                 println entry.key
                                 println entry.value
                             }
+
+                            echo "checking"
+                            if (env.getEnvironment().containsKey('myparam')) {
+                              println getProperty("myparam")
+                            }
                             /*  if(MYLIST[element] == null || MYLIST[element].length() ==0)
                               {
                                   echo "Missing parameter is:"
