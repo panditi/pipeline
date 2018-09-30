@@ -80,6 +80,12 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
+        def githubrepopathExists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }"
+        if (githubrepopathExists)
+        {
+            echo "Github repo path: ${params.github_repo_path} exists"
+        }
+        else{
         def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
@@ -89,15 +95,18 @@ node{
         else
         {
             echo "entered else loop of repoExists"
-            checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-            doGenerateSubmoduleConfigurations: false,
-            extensions: [],
-            submoduleCfg: [],
-            userRemoteConfigs: [[
-                credentialsId: 'origin',
-                url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-                ]]
-            ])
+            sh "mkdir -p ${PWD()}\${github_repo}"
+            dir ("${PWD()}\${github_repo}"){
+                checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [],
+                submoduleCfg: [],
+                userRemoteConfigs: [[
+                    credentialsId: 'origin',
+                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+                    ]]
+                ])
+              }
         }
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
@@ -113,7 +122,7 @@ node{
 
 
 
-    /*stage('Validate Paths')
+    stage('Validate Paths')
     {
         echo "=============================================="
         echo "Stage3:Validate Paths"
@@ -170,7 +179,7 @@ node{
       But this code is running on aws server. So, if you connect to server and type pwd, you will get /home/ec2-user.
       This code clones git repo iac-iam in the path /var/lib/jenkins/workspace/vertical-github-pipeline.
       So, if you do cd iac-iam/env/sandbox, it is showing only roles folder which is different from the exact repo in git.
-      What is the problem?
+      What is the problem?*/
 
         echo "${pwd()}"
 
@@ -184,7 +193,7 @@ node{
             echo "testing if it is changing directory"
             echo "${pwd()}"
             sh 'ls'
-        }*/
+        }
         /*sh """
 
           echo ${pwd()}
