@@ -92,7 +92,7 @@ node{
         {
             echo "entered else loop of repoExists"
 */
-            dir ("${PWD()}\${github_repo}"){
+            dir ("${pwd()}\${github_repo}"){
                 checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [],
