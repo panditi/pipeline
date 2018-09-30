@@ -28,8 +28,23 @@ node{
                     MYLIST += "${params.github_repo_path}"
                     MYLIST += "${params.github_repo_branch}"
                     MYLIST += "${params.environment}"
+                    //Dislay the parameter value of the parameter named "myparam"
+                            println "${params.myparam}"
 
-                    for (def element = 0; element < MYLIST.size(); element++) {
+                            //Dislay the name/value of all parameters
+                            for(entry in params) {
+                              if(MYLIST[element] == null || MYLIST[element].length() ==0)
+                              {
+                                  echo "Missing parameter is:"
+                                  println entry.key
+                              }
+                              else
+                              {
+                                echo "The parameter validated is:"
+                                println entry.value
+                              }
+                            }
+                  /*  for (def element = 0; element < MYLIST.size(); element++) {
                             //check if each parameter is provided
 
                             //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
