@@ -20,29 +20,22 @@ node{
             echo "Github Repo Path: ${params.github_repo_path}"
             echo "Github branch: ${params.github_repo_branch}"
             echo "Environment: ${params.environment}"
-
-
-            //creating list for parameters
-
-                    //Dislay the parameter value of the parameter named "myparam"
-                            //println "${params.myparam}"
-
-
-                            for(entry in params) {
-                              if(entry.value == null || entry.value.length() == 0)
-                              {
-                                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
-
-                                //println entry.key
-                              }
-                              else
-                              {
-                                println "The parameter provided is: " + entry.key + ". The value of the parameter provided is: " + entry.value
-                                //println entry.value
-                              }
-                            }
+            for(entry in params){
+              if(entry.value == null || entry.value.length() == 0)
+                {
+                    println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
+                    currentBuild.result = 'FAILURE'
+                    echo "RESULT: ${currentBuild.result}"
+                    sh "exit 1"
+                }
+              else
+                {
+                    println "The parameter provided is: " + entry.key + ". The value of the parameter provided is: " + entry.value
+                }
+            }
 
                             echo "checking"
+                // creating list for parameters
                 /* echo "Entering my list"
                    MYLIST = []
                              MYLIST += "${params.github_org}"
