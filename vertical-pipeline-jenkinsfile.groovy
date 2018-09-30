@@ -82,6 +82,15 @@ node{
         sh 'echo $PWD'
         sh 'echo $PWD'
 sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf * && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
+git credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99'
+sh "ls -lat"
+/*
+sh 'cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf *'
+            git branch: ${params.github_repo_branch}",
+                credentialsId: 'origin',
+                url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+
+            sh "ls -lat"
         //sh "mkdir -p ${pwd()}/${github_repo}"
         /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
