@@ -87,16 +87,18 @@ node{
         {
             echo "entered if loop of repoExists"
             dir ("${pwd()}"){
-
-               checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-               doGenerateSubmoduleConfigurations: false,
+              echo "${pwd()}"
+              sh "git clone https://github.com/${params.github_org}/${params.github_repo}.git"
+              echo "${pwd()}"
+               //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
+               /*doGenerateSubmoduleConfigurations: false,
                extensions: [],
                submoduleCfg: [],
                userRemoteConfigs: [[
                    credentialsId: 'origin',
                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                    ]]
-               ])
+               ])*/
              }
         }
         else
