@@ -142,7 +142,7 @@ node{
         dir("${params.github_repo}/env/${params.environment}"){
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh 'ls'
+            sh 'ls -al'
         }
         /*sh """
 
