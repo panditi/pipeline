@@ -36,12 +36,14 @@ node{
                               if(entry.value == null || entry.length() == 0)
                               {
                                 echo "printing missing key"
-                                println entry.key
+                                println entry.getkey()
+                                //println entry.key
                               }
                               else
                               {
+                                println entry.getvalue()
                                 echo "printing valid value"
-                                println entry.value
+                                //println entry.value
                               }
                             }
 
