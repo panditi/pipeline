@@ -81,7 +81,7 @@ node{
         echo "=============================================="
         sh 'echo $PWD'
 
-        sh "mkdir -p ${pwd()}/${github_repo}"
+        //sh "mkdir -p ${pwd()}/${github_repo}"
         /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
@@ -103,7 +103,7 @@ node{
                     ]]
                 ])
               }
-        
+
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
