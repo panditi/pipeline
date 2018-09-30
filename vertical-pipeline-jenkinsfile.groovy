@@ -33,14 +33,20 @@ node{
 
                             //Dislay the name/value of all parameters
                             for(entry in params) {
+                              if(entry.value == null || entry.length() == 0)
+                              {
+                                echo "printing missing key"
                                 println entry.key
+                              }
+                              else
+                              {
+                                echo "printing valid value"
                                 println entry.value
+                              }
                             }
 
                             echo "checking"
-                            if (env.getEnvironment().containsKey('myparam')) {
-                              println getProperty("myparam")
-                            }
+
                             /*  if(MYLIST[element] == null || MYLIST[element].length() ==0)
                               {
                                   echo "Missing parameter is:"
