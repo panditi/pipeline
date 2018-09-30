@@ -86,16 +86,27 @@ node{
         if(repoExists)
         {
             echo "entered if loop of repoExists"
-            sh 'git pull'
+            dir ("${pwd()}"){
+
+               checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
+               doGenerateSubmoduleConfigurations: false,
+               extensions: [],
+               submoduleCfg: [],
+               userRemoteConfigs: [[
+                   credentialsId: 'origin',
+                   url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+                   ]]
+               ])
+             }
         }
         else
         {
             echo "entered else loop of repoExists"
 
-          dir ("${pwd()}"){
+        //  dir ("${pwd()}"){
 
-                checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-                doGenerateSubmoduleConfigurations: false,
+          //      checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
+                /*doGenerateSubmoduleConfigurations: false,
                 extensions: [],
                 submoduleCfg: [],
                 userRemoteConfigs: [[
@@ -103,7 +114,7 @@ node{
                     url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                     ]]
                 ])
-              }
+              }*/
         }
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
@@ -119,7 +130,7 @@ node{
 
 
 }
-    stage('Validate Paths')
+  /*  stage('Validate Paths')
     {
         echo "=============================================="
         echo "Stage3:Validate Paths"
@@ -176,7 +187,7 @@ node{
       But this code is running on aws server. So, if you connect to server and type pwd, you will get /home/ec2-user.
       This code clones git repo iac-iam in the path /var/lib/jenkins/workspace/vertical-github-pipeline.
       So, if you do cd iac-iam/env/sandbox, it is showing only roles folder which is different from the exact repo in git.
-      What is the problem?*/
+      What is the problem?
 
         echo "${pwd()}"
 
@@ -202,10 +213,10 @@ node{
           """
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
           //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
-          //cd ${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}*/
+          //cd ${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}
 
 
-}
+        }*/
 
 
     //a compliance stub for future use
