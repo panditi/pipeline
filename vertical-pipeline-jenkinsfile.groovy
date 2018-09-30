@@ -87,7 +87,7 @@ node{
             doGenerateSubmoduleConfigurations: false,
             extensions: [], submoduleCfg: [],
             userRemoteConfigs: [[
-                credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+                credentialsId: 'origin',
                 name: 'origin-pull',
                 url: "https://github.com/${params.github_org}/${params.github_repo}.git",
                 refspec: "+refs/pull/${GITHUB_PR_NUMBER}/merge:refs/remotes/origin-pull/pull/${GITHUB_PR_NUMBER}/merge"]]
@@ -99,7 +99,7 @@ node{
             branches: [[name: "*/master"]],
             doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [],
             userRemoteConfigs: [[
-                credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+                credentialsId: 'origin',
                 url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]
             ])
         }
