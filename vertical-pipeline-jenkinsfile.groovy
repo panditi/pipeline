@@ -80,8 +80,9 @@ node{
         echo "Stage2:Checkout SCM"
         echo "=============================================="
         sh 'echo $PWD'
+
         sh "mkdir -p ${pwd()}/${github_repo}"
-        def repoExists = fileExists "${pwd()}/${params.github_repo}"
+        /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
         if(repoExists)
         {
             echo "entered if loop of repoExists"
@@ -90,7 +91,7 @@ node{
         else
         {
             echo "entered else loop of repoExists"
-
+*/
             dir ("${PWD()}\${github_repo}"){
                 checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
                 doGenerateSubmoduleConfigurations: false,
