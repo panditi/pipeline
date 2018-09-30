@@ -4,7 +4,7 @@ def github_repo = ""
 def github_repo_path = ""
 def github_repo_branch = "develop"
 def environment = "sandbox"
-def buildJob()
+
 
 
 node{
