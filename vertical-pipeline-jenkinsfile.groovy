@@ -29,7 +29,7 @@ node{
                     MYLIST += "${params.github_repo_branch}"
                     MYLIST += "${params.environment}"
                     //Dislay the parameter value of the parameter named "myparam"
-                            println "${params.myparam}"
+                            //println "${params.myparam}"
 
                             //Dislay the name/value of all parameters
                             for(entry in params) {
