@@ -96,7 +96,7 @@ node{
                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                    ]]
                ])*/
-             }
+             
         }
         else
         {
