@@ -7,6 +7,7 @@ node{
             stringParam(defaultValue: '', description: '', name: 'github_repo_path')
             stringParam(defaultValue: '', description: '', name: 'github_repo_branch')
             stringParam(defaultValue: '', description: '', name: 'environment')
+
             //choice(choices: ['master', 'develop'], description: '', name: 'github_repo_branch')
              }
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
@@ -114,7 +115,7 @@ node{
               {
                   echo "Environment path: ${params.environment} exists."
                   //Defining a string variable to check if the provided github_repo_path  exist or not
-                  def githubrepopathExists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }/backend.tfvars"
+                  def githubrepopathExists = fileExists "${pwd()}/env/${params.environment}/${params.github_repo_path }"
                   if (githubrepopathExists)
                   {
                       echo "Github repo path: ${params.github_repo_path} exists"
