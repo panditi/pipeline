@@ -31,13 +31,13 @@ node{
                             for(entry in params) {
                               if(entry.value == null || entry.value.length() == 0)
                               {
-                                println "The parameter missing is: " + entry.key + "Please provide a valure for parameter" 
+                                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
 
                                 //println entry.key
                               }
                               else
                               {
-                                println "The parameter provided is: " + entry.key + "The value of the parameter provided is: " + entry.value
+                                println "The parameter provided is: " + entry.key + ". The value of the parameter provided is: " + entry.value
                                 //println entry.value
                               }
                             }
