@@ -94,8 +94,9 @@ node{
             userRemoteConfigs: [[
                 credentialsId: 'origin',
                 url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-            ]]
-        ])
+                ]]
+            ])
+        }
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
