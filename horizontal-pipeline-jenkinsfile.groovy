@@ -8,8 +8,17 @@ def s3_bucket = ""
 def s3_key = ""
 
 node{
-    def funcs = load './functions.groovy'
     echo "${pwd()}"
+    echo 'current working directory:'
+    echo \$pwd
+    echo ' '
+    echo ' '
+    echo 'current files in working directory:'
+    ls -al
+    echo ' '
+    echo ' '
+    def funcs = load './iac-cicd/functions.groovy'
+
 
     // executeVerticalPipeline
 
