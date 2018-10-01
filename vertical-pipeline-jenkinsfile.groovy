@@ -172,8 +172,7 @@ node{
             echo "Listing contents and running terraform validate command"
             sh 'ls -al'
 
-            github_repo_path validate
-            go to path terraform.tfvars file exists and validate
+      
         }
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
             echo "testing if it is changing directory"
