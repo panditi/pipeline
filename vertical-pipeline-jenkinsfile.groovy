@@ -45,6 +45,7 @@ node
 
         echo "Done. Validating parameters"
         echo "End of Stage1 : Validation."
+        stageEnd(1,'Validation')
 
     }
 
@@ -211,4 +212,8 @@ def stageHeader(int stageNumber,String stageName)
     echo "=========================================================================================================================================="
     echo "                                                 Stage ${stageNumber} : ${stageName}"
     echo "=========================================================================================================================================="
+}
+def stageEnd (int stageNumber,String stageName)
+{
+    echo "END OF STAGE stageNumber : stageName."
 }
