@@ -175,10 +175,10 @@ node{
         dir("${params.github_repo}/${params.github_repo_path}"){
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh """
-              ls
-              terraform validate -var-file=${params.github_repo_path}/terraform.tfvars
-            """
+            //sh """
+            //  ls
+            //  terraform validate -var-file=${params.github_repo_path}/terraform.tfvars
+            //"""
         }
 
           //terraform validate -var-file="{params.github_repo_path}/terraform.tfvars"
