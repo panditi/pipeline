@@ -112,34 +112,35 @@ node
 
         //Defining a string variable to check if the provided environment path exist or not
         def environmentExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}"
-            echo "${pwd()}"
-                if (environmentExists)
-                {
-                    echo "Environment path: ${params.environment} exists."
-                    //Defining a string variable to check if the provided github_repo_path  exist or not
-                    def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}"
-                    if (githubrepopathExists)
-                    {
-                        echo "Github repo path: ${params.github_repo_path} exists"
-                    }
-                    else
-                    {
-                        echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
-                        //fail the build
-                        currentBuild.result = 'FAILURE'
-                        echo "RESULT: ${currentBuild.result}"
-                        sh "exit 1"
-                    }
-                }
-                else {
-                    echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
-                    //fail the build
-                    currentBuild.result = 'FAILURE'
-                    echo "RESULT: ${currentBuild.result}"
-                    sh "exit 1"
-                }
-                echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
-                echo "End of Stage3 : Validate Paths."
+        echo "${pwd()}"
+        if (environmentExists)
+        {
+            echo "Environment path: ${params.environment} exists."
+            //Defining a string variable to check if the provided github_repo_path  exist or not
+            def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}"
+            if (githubrepopathExists)
+            {
+                echo "Github repo path: ${params.github_repo_path} exists"
+            }
+            else
+            {
+                echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
+                //fail the build
+                currentBuild.result = 'FAILURE'
+                echo "RESULT: ${currentBuild.result}"
+                sh "exit 1"
+            }
+        }
+        else
+        {
+            echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
+            //fail the build
+            currentBuild.result = 'FAILURE'
+            echo "RESULT: ${currentBuild.result}"
+            sh "exit 1"
+        }
+        echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
+        echo "End of Stage3 : Validate Paths."
 
     }
     //a compliance stub for future use
@@ -162,7 +163,8 @@ node
         echo "=============================================="
         println "Stage6:Terraform-init"
         echo "=============================================="
-        dir("${params.github_repo}/${params.github_repo_path}"){
+        dir("${params.github_repo}/${params.github_repo_path}")
+        {
             echo "testing if it is changing directory"
             echo "${pwd()}"
             sh """
@@ -170,10 +172,6 @@ node
                 terraform init -backend-config=../env/"${params.environment}"/backend.tfvars -backend-config=../env/"${params.environment}"/"${params.github_repo_path}"/backend.tfvars
                 """
         }
-
-
-
-
     }
   //  This will check the terraform code syntax
    stage('Lint')
