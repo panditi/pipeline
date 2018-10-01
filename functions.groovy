@@ -9,3 +9,4 @@ def vertical_pipeline = "vertical-github-pipeline"
      [$class: 'StringParameterValue', name: 'environment', value: environment]
      ]
 }
+return this;
