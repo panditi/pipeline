@@ -1,47 +1,52 @@
 
 
-node{
+node
+{
     //defining the parameters
-    parameters{
-            stringParam(defaultValue: '', description: 'User or organization for the github repo', name: 'github_org')
-            stringParam(defaultValue: '', description: 'Repo where code is stored', name: 'github_repo')
-            stringParam(defaultValue: '', description: 'Root of terraform code inside the githb_repo', name: 'github_repo_path')
-            stringParam(defaultValue: '', description: 'Current branch of github_repo', name: 'github_repo_branch')
-            stringParam(defaultValue: '', description: 'Environment name of github_repo', name: 'environment')
-            stringParam(defaultValue: '', description: 'Name of S3 bucket for terraform state files', name: 's3_bucket')
-            stringParam(defaultValue: '', description: 'Key/path to store this enviroment\'s state file in s3; the "name" of the environment', name: 's3_key')
+    parameters
+    {
+        stringParam(defaultValue: '', description: 'User or organization for the github repo', name: 'github_org')
+        stringParam(defaultValue: '', description: 'Repo where code is stored', name: 'github_repo')
+        stringParam(defaultValue: '', description: 'Root of terraform code inside the githb_repo', name: 'github_repo_path')
+        stringParam(defaultValue: '', description: 'Current branch of github_repo', name: 'github_repo_branch')
+        stringParam(defaultValue: '', description: 'Environment name of github_repo', name: 'environment')
+        stringParam(defaultValue: '', description: 'Name of S3 bucket for terraform state files', name: 's3_bucket')
+        stringParam(defaultValue: '', description: 'Key/path to store this enviroment\'s state file in s3; the "name" of the environment', name: 's3_key')
 
 
-             }
+    }
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
-    stage('Validation') {
-            echo "=============================================="
-            echo "Stage1:Validation"
-            echo "=============================================="
-            //Dislay the name/value of all parameters
-            echo "Cleaning up workspace"
-            cleanWs()
-            echo "Github Org: ${params.github_org}"
-            echo "Github Repo: ${params.github_repo}"
-            echo "Github Repo Path: ${params.github_repo_path}"
-            echo "Github branch: ${params.github_repo_branch}"
-            echo "Environment: ${params.environment}"
-            for(entry in params){
-              if(entry.value == null || entry.value.length() == 0)
-                {
-                    println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
-                    currentBuild.result = 'FAILURE'
-                    echo "RESULT: ${currentBuild.result}"
-                    sh "exit 1"
-                }
-              else
-                {
-                    println "The parameter provided is: " + entry.key + ". The value of the parameter provided is: " + entry.value
-                }
+    stage('Validation')
+    {
+        echo "=============================================="
+        echo "Stage1:Validation"
+        echo "=============================================="
+        stageHeader(1,'Validation')
+        //Clean the workspace
+        echo "Cleaning up workspace"
+        cleanWs()
+        //Dislay the name/value of all parameters
+        echo "Github Org: ${params.github_org}"
+        echo "Github Repo: ${params.github_repo}"
+        echo "Github Repo Path: ${params.github_repo_path}"
+        echo "Github branch: ${params.github_repo_branch}"
+        echo "Environment: ${params.environment}"
+        for(entry in params){
+            if(entry.value == null || entry.value.length() == 0)
+            {
+                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
+                currentBuild.result = 'FAILURE'
+                echo "RESULT: ${currentBuild.result}"
+                sh "exit 1"
             }
+            else
+            {
+                println "The parameter provided is: " + entry.key + ". The value of the parameter provided is: " + entry.value
+            }
+        }
 
-            echo "Done. Validating parameters"
-            echo "End of Stage1 : Validation."
+        echo "Done. Validating parameters"
+        echo "End of Stage1 : Validation."
 
     }
 
@@ -51,22 +56,20 @@ node{
         echo "=============================================="
         sh 'echo $PWD'
         sh "echo ${env.WORKSPACE}"
-
-        //dir ("${pwd()}/${params.github_repo}"){
-              checkout([
-                  $class: 'GitSCM',
-                  branches: [[name: "*/${params.github_repo_branch}"]],
-                  doGenerateSubmoduleConfigurations: false,
-                  extensions: [
-                      [$class: 'CleanBeforeCheckout'],
-                      [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
-                      ],
-                  submoduleCfg: [],
-                  userRemoteConfigs: [[
-                      credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
-                      url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-                      ]]
-              ])
+        checkout([
+                $class: 'GitSCM',
+                branches: [[name: "*/${params.github_repo_branch}"]],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [
+                    [$class: 'CleanBeforeCheckout'],
+                    [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
+                    ],
+                submoduleCfg: [],
+                userRemoteConfigs: [[
+                    credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+                    ]]
+        ])
           /*    sh """
          echo 'current working directory:'
          echo \$pwd
@@ -93,16 +96,6 @@ node{
 
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
-        /*sh '''
-
-          ls
-          echo "${pwd()}"
-          cd env
-          ls -la
-          echo \$(pwd)
-          '''*/
-
-
 
 }
     stage('Validate Paths')
@@ -113,59 +106,82 @@ node{
 
         //github_repo/env/environment
         sh '''
-          #!/bin/bash
-          ls && pwd
-          '''
+            #!/bin/bash
+            ls && pwd
+        '''
 
-            //Defining a string variable to check if the provided environment path exist or not
-            def environmentExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}"
-            //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
-              echo "${pwd()}"
-              if (environmentExists)
-              {
-                  echo "Environment path: ${params.environment} exists."
-                  //Defining a string variable to check if the provided github_repo_path  exist or not
-                  def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}"
-                  if (githubrepopathExists)
-                  {
-                      echo "Github repo path: ${params.github_repo_path} exists"
-                  }
-                  else{
-                      echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
-                      //fail the build
-                      currentBuild.result = 'FAILURE'
-                      echo "RESULT: ${currentBuild.result}"
-                      sh "exit 1"
-                  }
-              }
-              else {
-                  echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
-                  //fail the build
-                  currentBuild.result = 'FAILURE'
-                  echo "RESULT: ${currentBuild.result}"
-                  sh "exit 1"
-              }
-              echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
-              echo "End of Stage3 : Validate Paths."
+        //Defining a string variable to check if the provided environment path exist or not
+        def environmentExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}"
+            echo "${pwd()}"
+                if (environmentExists)
+                {
+                    echo "Environment path: ${params.environment} exists."
+                    //Defining a string variable to check if the provided github_repo_path  exist or not
+                    def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}"
+                    if (githubrepopathExists)
+                    {
+                        echo "Github repo path: ${params.github_repo_path} exists"
+                    }
+                    else
+                    {
+                        echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
+                        //fail the build
+                        currentBuild.result = 'FAILURE'
+                        echo "RESULT: ${currentBuild.result}"
+                        sh "exit 1"
+                    }
+                }
+                else {
+                    echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
+                    //fail the build
+                    currentBuild.result = 'FAILURE'
+                    echo "RESULT: ${currentBuild.result}"
+                    sh "exit 1"
+                }
+                echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
+                echo "End of Stage3 : Validate Paths."
 
     }
+    //a compliance stub for future use
+    stage('Compliance')
+    {
+        echo "=============================================="
+        println "Stage4:Compliance"
+        echo "=============================================="
+    }
+    //a security stub for future use
+    stage('Security')
+    {
+        echo "=============================================="
+        println "Stage5:Security"
+        echo "=============================================="
+    }
+    //execute the terraform init stage
+    stage('Terraform-init')
+    {
+        echo "=============================================="
+        println "Stage6:Terraform-init"
+        echo "=============================================="
+        dir("${params.github_repo}/${params.github_repo_path}"){
+            echo "testing if it is changing directory"
+            echo "${pwd()}"
+            sh """
+                ls
+                terraform init -backend-config=../env/"${params.environment}"/backend.tfvars -backend-config=../env/"${params.environment}"/"${params.github_repo_path}"/backend.tfvars
+                """
+        }
 
 
+
+
+    }
   //  This will check the terraform code syntax
    stage('Lint')
    {
         echo "=============================================="
-        echo "Stage4:Lint"
+        echo "Stage7:Lint"
         echo "=============================================="
-        //terraform validate -var-file=path to env folder on your local/variables.tfvars
-  /*  Note: In the git repo iac-iam, if you go to env/sandbox and see contents,you will find roles,vault,backend.tfvars, terraform.tfvars.
-      But this code is running on aws server. So, if you connect to server and type pwd, you will get /home/ec2-user.
-      This code clones git repo iac-iam in the path of my  server /var/lib/jenkins/workspace/vertical-github-pipeline.
-      So, if you do cd iac-iam/env/sandbox, it is showing only roles folder which is different from the exact repo in git.
-      What is the problem?*/
-
         echo "${pwd()}"
-
         /*dir("${params.github_repo}/env/${params.environment}"){
             echo "testing if it is changing directory"
             echo "${pwd()}"
@@ -175,59 +191,47 @@ node{
         dir("${params.github_repo}/${params.github_repo_path}"){
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh """
+          /*  sh """
               ls
               terraform validate -var-file=${params.github_repo_path}/terraform.tfvars
             """
-        }
+        }*/
 
           //terraform validate -var-file="{params.github_repo_path}/terraform.tfvars"
 
 
 
 
-  }
+     }
 
 
-    //a compliance stub for future use
-    /*stage('Compliance') {
-            echo "=============================================="
-            println "Stage3:Compliance"
-            echo "=============================================="
-    }
-    //a security stub for future use
-    stage('Security') {
-            echo "=============================================="
-            println "Stage4:Security"
-            echo "=============================================="
-    }
-    //execute the terraform init stage
-    stage('Terraform-init') {
-            echo "=============================================="
-            println "Stage5:Terraform-init"
-            echo "=============================================="
-    }
+  /*
+
     //execute the terraform plan
-    stage('Terraform-plan') {
-            echo "=============================================="
-            println "Stage6:Terraform-plan"
-            echo "=============================================="
+    stage('Terraform-plan')
+    {
+        echo "=============================================="
+        println "Stage8:Terraform-plan"
+        echo "=============================================="
     }
     //execute the terraform apply
-    stage('Terraform-apply') {
-            echo "=============================================="
-            println "Stage7:Terraform-apply"
-            echo "=============================================="
+    stage('Terraform-apply')
+    {
+        echo "=============================================="
+        println "Stage9:Terraform-apply"
+        echo "=============================================="
     }
     //produce a report for display regarding the results
-    stage('Report'){
-            echo "=============================================="
-            println "Stage8:Reporting results"
-            echo "=============================================="
+    stage('Report')
+    {
+        echo "=============================================="
+        println "Stage10:Reporting results"
+        echo "=============================================="
     }*/
 }
-/*post {
-       always {
-           cleanWs()
-       }
-   }*/
+def stageHeader(int stageNumber,String stageName)
+{
+    echo "=============================================="
+    echo "Stage ${stageNumber} : ${stageName}"
+    echo "=============================================="
+}
