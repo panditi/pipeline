@@ -59,7 +59,7 @@ node{
 
         sh "echo ${env.WORKSPACE}"*/
         //mkdir -p "${pwd()}/${params.github_repo}"
-        dir ("${pwd()}/${params.github_repo}"){
+        //dir ("${pwd()}/${params.github_repo}"){
               checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
               doGenerateSubmoduleConfigurations: false,
               extensions: [
@@ -75,7 +75,30 @@ node{
                   url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                   ]]
               ])
-        }
+              sh """
+         echo 'current working directory:'
+         echo \$pwd
+         echo ' '
+         echo ' '
+         echo 'current files in working directory:'
+         echo ls -al
+         echo ' '
+         echo ' '
+         echo 'files in the expected checkout directory:'
+         echo ls -la ${params.github_repo}
+         echo ' '
+         echo ' '
+         echo 'files in the expected checkout environment directory:'
+         echo ls -la ${params.github_repo}/env
+         echo ' '
+         echo ' '
+         echo 'files in the expected checkout selected environments directory:'
+         echo ls -la ${params.github_repo}/env/${params.environment}
+         echo ' '
+         echo ' '
+
+       """
+      //  }
 //extensions: [[$class: 'CleanBeforeCheckout']],
 
 //sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf * && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
