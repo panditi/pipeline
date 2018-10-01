@@ -40,38 +40,6 @@ node{
 
             echo "Done. Validating parameters"
             echo "End of Stage1 : Validation."
-                // creating list for parameters
-                /* echo "Entering my list"
-                   MYLIST = []
-                             MYLIST += "${params.github_org}"
-                             MYLIST += "${params.github_repo}"
-                             MYLIST += "${params.github_repo_path}"
-                             MYLIST += "${params.github_repo_branch}"
-                             MYLIST += "${params.environment}"
-                  for (def element = 0; element < MYLIST.size(); element++) {
-                  //check if each parameter is provided
-
-                  //sh 'cut --complement -d ":" -f 1 ${MYLIST[element]}'
-                  // Split MYLIST[element] on the colon if the second value trimmed is empty!
-                      if(MYLIST[element] == null || MYLIST[element].length() ==0)
-                            {
-                                echo "The parameter missing is: ${MYLIST[element]}"
-                                currentBuild.result = 'FAILURE'
-                                echo "RESULT: ${currentBuild.result}"
-                                sh "exit 1"
-                                //error 'Fail the Build'
-                            }
-                            else
-                              {
-                                echo "The parameter validated is: ${MYLIST[element]} "
-                                //currentBuild.result = 'SUCCESS'
-                            }
-
-                    }
-                          // def browsers = ['chrome', 'firefox']
-                    //for (int i = 0; i < browsers.size(); ++i) {
-                      //  echo "Testing the ${browsers[i]} browser"*/
-
 
     }
 
@@ -139,19 +107,8 @@ node{
               echo "${pwd()}"
               sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
               echo "${pwd()}"
-            }*/
-        //  dir ("${pwd()}"){
+            }
 
-          //      checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-                /*doGenerateSubmoduleConfigurations: false,
-                extensions: [],
-                submoduleCfg: [],
-                userRemoteConfigs: [[
-                    credentialsId: 'origin',
-                    url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-                    ]]
-                ])
-              }
         }*/
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
@@ -222,7 +179,7 @@ node{
         //terraform validate -var-file=path to env folder on your local/variables.tfvars
   /*  Note: In the git repo iac-iam, if you go to env/sandbox and see contents,you will find roles,vault,backend.tfvars, terraform.tfvars.
       But this code is running on aws server. So, if you connect to server and type pwd, you will get /home/ec2-user.
-      This code clones git repo iac-iam in the path /var/lib/jenkins/workspace/vertical-github-pipeline.
+      This code clones git repo iac-iam in the path of my  server /var/lib/jenkins/workspace/vertical-github-pipeline.
       So, if you do cd iac-iam/env/sandbox, it is showing only roles folder which is different from the exact repo in git.
       What is the problem?*/
 
