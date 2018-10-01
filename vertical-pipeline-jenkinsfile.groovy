@@ -32,10 +32,8 @@ node
         {
             if(entry.value == null || entry.value.length() == 0)
             {
-                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
-                currentBuild.result = 'FAILURE'
-                echo "RESULT: ${currentBuild.result}"
-                sh "exit 1"
+                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
+                buildFailed()
             }
             else
             {
@@ -122,18 +120,14 @@ node
             {
                 echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
                 //fail the build
-                currentBuild.result = 'FAILURE'
-                echo "RESULT: ${currentBuild.result}"
-                sh "exit 1"
+                buildFailed()
             }
         }
         else
         {
             echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
             //fail the build
-            currentBuild.result = 'FAILURE'
-            echo "RESULT: ${currentBuild.result}"
-            sh "exit 1"
+            buildFailed()
         }
         echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
         echo "End of Stage3 : Validate Paths."
@@ -218,4 +212,10 @@ def stageHeader(int stageNumber,String stageName)
 def stageEnd (int stageNumber,String stageName)
 {
     echo "END OF STAGE ${stageNumber} : ${stageName}."
+}
+def buildFailed()
+{
+    currentBuild.result = 'FAILURE'
+    echo "RESULT: ${currentBuild.result}"
+    sh "exit 1"
 }
