@@ -143,11 +143,13 @@ node
     stage('Compliance')
     {
         stageHeader(4,'Compliance')
+        echo "In Compliance stage."
     }
     //a security stub for future use
     stage('Security')
     {
         stageHeader(5,'Security')
+        echo "In Security stage."
     }
     //execute the terraform init stage
     stage('Terraform init')
