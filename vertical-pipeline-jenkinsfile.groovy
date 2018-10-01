@@ -18,9 +18,6 @@ node
     // This stage checks to make sure the pipeline has been supplied the correct parameters.
     stage('Validation')
     {
-        echo "=============================================="
-        echo "Stage1:Validation"
-        echo "=============================================="
         stageHeader(1,'Validation')
         //Clean the workspace
         echo "Cleaning up workspace"
@@ -53,9 +50,7 @@ node
 
     stage('Checkout SCM')
     {
-        echo "=============================================="
-        echo "Stage2:Checkout SCM"
-        echo "=============================================="
+        stageHeader(2,'Checkout SCM')
         sh 'echo $PWD'
         sh "echo ${env.WORKSPACE}"
         checkout([
@@ -102,9 +97,7 @@ node
     }
     stage('Validate Paths')
     {
-        echo "=============================================="
-        echo "Stage3:Validate Paths"
-        echo "=============================================="
+        stageHeader(3,'Validate Paths')
 
         //github_repo/env/environment
         sh '''
@@ -148,39 +141,31 @@ node
     //a compliance stub for future use
     stage('Compliance')
     {
-        echo "=============================================="
-        println "Stage4:Compliance"
-        echo "=============================================="
+        stageHeader(4,'Compliance')
     }
     //a security stub for future use
     stage('Security')
     {
-        echo "=============================================="
-        println "Stage5:Security"
-        echo "=============================================="
+        stageHeader(5,'Security')
     }
     //execute the terraform init stage
-    stage('Terraform-init')
+    stage('Terraform init')
     {
-        echo "=============================================="
-        println "Stage6:Terraform-init"
-        echo "=============================================="
+        stageHeader(6,'Terraform init')
         dir("${params.github_repo}/${params.github_repo_path}")
         {
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh """
+            /*sh """
                 ls
                 terraform init -backend-config=../env/"${params.environment}"/backend.tfvars -backend-config=../env/"${params.environment}"/"${params.github_repo_path}"/backend.tfvars
-                """
+                """*/
         }
     }
   //  This will check the terraform code syntax
    stage('Lint')
    {
-        echo "=============================================="
-        echo "Stage7:Lint"
-        echo "=============================================="
+        stageHeader(7,'Lint')
         echo "${pwd()}"
         /*dir("${params.github_repo}/env/${params.environment}"){
             echo "testing if it is changing directory"
@@ -206,30 +191,24 @@ node
   /*
 
     //execute the terraform plan
-    stage('Terraform-plan')
+    stage('Terraform Plan')
     {
-        echo "=============================================="
-        println "Stage8:Terraform-plan"
-        echo "=============================================="
+        stageHeader(8,'Terraform Plan')
     }
     //execute the terraform apply
-    stage('Terraform-apply')
+    stage('Terraform Apply')
     {
-        echo "=============================================="
-        println "Stage9:Terraform-apply"
-        echo "=============================================="
+        stageHeader(9,'Terraform Apply')
     }
     //produce a report for display regarding the results
     stage('Report')
     {
-        echo "=============================================="
-        println "Stage10:Reporting results"
-        echo "=============================================="
+        stageHeader(10,'Report')
     }*/
 }
 def stageHeader(int stageNumber,String stageName)
 {
-    echo "=============================================="
-    echo "Stage ${stageNumber} : ${stageName}"
-    echo "=============================================="
+    echo "=========================================================================================================================================="
+    echo "                                           Stage ${stageNumber} : ${stageName}"
+    echo "=========================================================================================================================================="
 }
