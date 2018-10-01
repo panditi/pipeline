@@ -9,6 +9,7 @@ def s3_key = ""
 
 node{
     echo "${pwd()}"
+    sh '''
     echo 'current working directory:'
     echo \$pwd
     echo ' '
@@ -17,6 +18,7 @@ node{
     ls -al
     echo ' '
     echo ' '
+    '''
     def funcs = load './iac-cicd/functions.groovy'
 
 
