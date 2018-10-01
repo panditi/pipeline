@@ -6,9 +6,11 @@ def github_repo_branch = "develop"
 def environment = "sandbox"
 def s3_bucket = ""
 def s3_key = ""
-def funcs = load './functions.groovy'
+
 node{
+    def funcs = load './functions.groovy'
     echo "${pwd()}"
+
     // executeVerticalPipeline
 
     stage("iac-iam-roles"){
