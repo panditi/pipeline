@@ -148,7 +148,7 @@ node{
               {
                   echo "Environment path: ${params.environment} exists."
                   //Defining a string variable to check if the provided github_repo_path  exist or not
-                  def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path }"
+                  def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}"
                   if (githubrepopathExists)
                   {
                       echo "Github repo path: ${params.github_repo_path} exists"
