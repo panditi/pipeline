@@ -56,10 +56,12 @@ node{
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
 
         sh "echo ${env.WORKSPACE}"*/
-        dir ("${pwd()}"){
+        mkdir -p "${pwd()}/${params.github_repo}"
+        dir ("${pwd()}/${params.github_repo}"){
               checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
               doGenerateSubmoduleConfigurations: false,
-              extensions: [[$class: 'CleanBeforeCheckout']],
+              extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'testdir']],
+
               submoduleCfg: [],
               userRemoteConfigs: [[
                   credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
@@ -67,7 +69,7 @@ node{
                   ]]
               ])
         }
-
+//extensions: [[$class: 'CleanBeforeCheckout']],
 
 //sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf * && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
 //git credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99'
