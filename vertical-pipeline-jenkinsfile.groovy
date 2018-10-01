@@ -81,19 +81,19 @@ node{
          echo ' '
          echo ' '
          echo 'current files in working directory:'
-         echo ls -al
+         ls -al
          echo ' '
          echo ' '
          echo 'files in the expected checkout directory:'
-         echo ls -la ${params.github_repo}
+         ls -la ${params.github_repo}
          echo ' '
          echo ' '
          echo 'files in the expected checkout environment directory:'
-         echo ls -la ${params.github_repo}/env
+         ls -la ${params.github_repo}/env
          echo ' '
          echo ' '
          echo 'files in the expected checkout selected environments directory:'
-         echo ls -la ${params.github_repo}/env/${params.environment}
+         ls -la ${params.github_repo}/env/${params.environment}
          echo ' '
          echo ' '
 
