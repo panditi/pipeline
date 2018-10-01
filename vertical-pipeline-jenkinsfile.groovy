@@ -141,14 +141,14 @@ node{
           '''
 
             //Defining a string variable to check if the provided environment path exist or not
-            def environmentExists = fileExists "${pwd()}/${patams.github_repo}/env/${params.environment}"
+            def environmentExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}"
             //def exists = fileExists '/var/lib/jenkins/workspace/vertical-github-pipeline/env/sandbox/roles/backend.tfvars'
               echo "${pwd()}"
               if (environmentExists)
               {
                   echo "Environment path: ${params.environment} exists."
                   //Defining a string variable to check if the provided github_repo_path  exist or not
-                  def githubrepopathExists = fileExists "${pwd()}/${patams.github_repo}/env/${params.environment}/${params.github_repo_path }"
+                  def githubrepopathExists = fileExists "${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path }"
                   if (githubrepopathExists)
                   {
                       echo "Github repo path: ${params.github_repo_path} exists"
