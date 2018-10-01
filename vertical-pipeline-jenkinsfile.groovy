@@ -56,7 +56,7 @@ node{
         userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
 
         sh "echo ${env.WORKSPACE}"*/
-        mkdir -p "${pwd()}/${params.github_repo}"
+        //mkdir -p "${pwd()}/${params.github_repo}"
         dir ("${pwd()}/${params.github_repo}"){
               checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
               doGenerateSubmoduleConfigurations: false,
