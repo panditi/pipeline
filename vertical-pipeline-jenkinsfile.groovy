@@ -166,34 +166,27 @@ node{
 
         echo "${pwd()}"
 
-        dir("${params.github_repo}/env/${params.environment}"){
+        /*dir("${params.github_repo}/env/${params.environment}"){
             echo "testing if it is changing directory"
             echo "${pwd()}"
             echo "Listing contents and running terraform validate command"
             sh 'ls -al'
-
-      
-        }
-        dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
+        }*/
+        dir("${params.github_repo}/${params.github_repo_path}"){
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh 'ls'
+            sh """
+              ls
+              terraform validate -var-file=${params.github_repo_path}/terraform.tfvars
+            """
         }
-        /*sh """
 
-          echo ${pwd()}
-          ls
-          cd env/
-          echo ${pwd()}
-          cd ${params.github_repo}/env/${params.environment}/${params.github_repo_path}
-          echo ${pwd()}
-          """
-          //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars
-          //terraform validate -var-file="${PWD}/env/${params.environment}terraform.tfvars -var-file="${PWD}/env/${params.environment}/${params.github_repo_path}/terraform.tfvars "
-          //cd ${pwd()}/${params.github_repo}/env/${params.environment}/${params.github_repo_path}*/
+          //terraform validate -var-file="{params.github_repo_path}/terraform.tfvars"
 
 
-        }
+
+
+  }
 
 
     //a compliance stub for future use
