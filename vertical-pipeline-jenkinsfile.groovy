@@ -51,31 +51,23 @@ node{
         echo "=============================================="
         sh 'echo $PWD'
         sh "echo ${env.WORKSPACE}"
-        //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-        /*doGenerateSubmoduleConfigurations: false,
-        extensions: [],
-        submoduleCfg: [],
-        userRemoteConfigs: [[credentialsId: 'origin', url: "https://github.com/${params.github_org}/${params.github_repo}.git"]]])
 
-        sh "echo ${env.WORKSPACE}"*/
-        //mkdir -p "${pwd()}/${params.github_repo}"
         //dir ("${pwd()}/${params.github_repo}"){
-              checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-              doGenerateSubmoduleConfigurations: false,
-              extensions: [
-
-               [$class: 'CleanBeforeCheckout'],
-               [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
-
-             ],
-
-              submoduleCfg: [],
-              userRemoteConfigs: [[
-                  credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
-                  url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-                  ]]
+              checkout([
+                  $class: 'GitSCM',
+                  branches: [[name: "*/${params.github_repo_branch}"]],
+                  doGenerateSubmoduleConfigurations: false,
+                  extensions: [
+                      [$class: 'CleanBeforeCheckout'],
+                      [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
+                      ],
+                  submoduleCfg: [],
+                  userRemoteConfigs: [[
+                      credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99',
+                      url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+                      ]]
               ])
-              sh """
+          /*    sh """
          echo 'current working directory:'
          echo \$pwd
          echo ' '
@@ -97,51 +89,8 @@ node{
          echo ' '
          echo ' '
 
-       """
-      //  }
-//extensions: [[$class: 'CleanBeforeCheckout']],
+       """*/
 
-//sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf * && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
-//git credentialsId: 'b74b58be-f128-46ed-8d02-5f7965517a99'
-//sh "ls -lat"
-
-          /*  sh 'cd /var/lib/jenkins/workspace/vertical-github-pipeline && rm -rf *'
-            git branch: "${params.github_repo_branch}"
-                credentialsId: 'origin'
-                url: " https://github.com/${params.github_org}/${params.github_repo}.git"
-
-            sh "ls -lat"
-        //sh "mkdir -p ${pwd()}/${github_repo}"
-        /*def repoExists = fileExists "${pwd()}/${params.github_repo}"
-        if(repoExists)
-        {
-            echo "entered if loop of repoExists"
-            dir ("${pwd()}"){
-              echo "${pwd()}"
-              sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
-              echo "${pwd()}"
-            }*/
-               //checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
-               //doGenerateSubmoduleConfigurations: false,
-               /*extensions: [],
-               submoduleCfg: [],
-               userRemoteConfigs: [[
-                   credentialsId: 'origin',
-                   url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-                   ]]
-               ])
-
-        }
-        else
-        {
-            echo "entered else loop of repoExists"
-            dir ("${pwd()}"){
-              echo "${pwd()}"
-              sh "cd /var/lib/jenkins/workspace/vertical-github-pipeline && git clone https://github.com/${params.github_org}/${params.github_repo}.git"
-              echo "${pwd()}"
-            }
-
-        }*/
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
         /*sh '''
@@ -222,6 +171,9 @@ node{
             echo "${pwd()}"
             echo "Listing contents and running terraform validate command"
             sh 'ls -al'
+
+            github_repo_path validate
+            go to path terraform.tfvars file exists and validate
         }
         dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}"){
             echo "testing if it is changing directory"

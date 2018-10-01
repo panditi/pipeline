@@ -9,17 +9,17 @@ def s3_key = ""
 
 node{
     echo "${pwd()}"
-    sh """
-    echo 'current working directory:'
-    echo \$pwd
-    echo ' '
-    echo ' '
-    echo 'current files in working directory:'
-    ls -al
-    echo ' '
-    echo ' '
+    /*sh """
+        echo 'current working directory:'
+        echo \$pwd
+        echo ' '
+        echo ' '
+        echo 'current files in working directory:'
+        ls -al
+        echo ' '
+        echo ' '
     """
-    def funcs = load './iac-cicd/functions.groovy'
+    def funcs = load './iac-cicd/functions.groovy'*/
 
 
     // executeVerticalPipeline
@@ -29,7 +29,7 @@ node{
         github_repo_path = "roles"
           //sum(10,5);
 
-        funcs.buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
+        buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
         //pipefuncs.buildJob(${params.github_org}, ${params.github_repo}, ${params.github_repo_path}, ${params.github_repo_branch}, ${params.environment})
       /*  build job: vertical_pipeline, parameters: [
             [$class: 'StringParameterValue', name: 'github_org', value: github_org],
@@ -63,7 +63,7 @@ node{
     // Send notifications
     //slackSend (channel: '@me', color: colorCode, message: summary)
 }
-/*def buildJob(String github_org, String github_repo, String github_repo_path, String github_repo_branch, String environment){
+def buildJob(String github_org, String github_repo, String github_repo_path, String github_repo_branch, String environment){
 echo "entered.........................................................................."
 def vertical_pipeline = "vertical-github-pipeline"
  build job: vertical_pipeline, parameters: [
@@ -73,7 +73,7 @@ def vertical_pipeline = "vertical-github-pipeline"
      [$class: 'StringParameterValue', name: 'github_repo_branch', value: github_repo_branch],
      [$class: 'StringParameterValue', name: 'environment', value: environment]
      ]
-}*/
+}
 /*def sum(int a,int b) {
       int c = a+b;
       echo "Printing............................................................................................................."
