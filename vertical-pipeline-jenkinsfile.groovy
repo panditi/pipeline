@@ -31,7 +31,8 @@ node
         echo "Github Repo Path: ${params.github_repo_path}"
         echo "Github branch: ${params.github_repo_branch}"
         echo "Environment: ${params.environment}"
-        for(entry in params){
+        for(entry in params)
+        {
             if(entry.value == null || entry.value.length() == 0)
             {
                 println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
@@ -50,7 +51,8 @@ node
 
     }
 
-    stage('Checkout SCM'){
+    stage('Checkout SCM')
+    {
         echo "=============================================="
         echo "Stage2:Checkout SCM"
         echo "=============================================="
@@ -97,7 +99,7 @@ node
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
 
-}
+    }
     stage('Validate Paths')
     {
         echo "=============================================="
@@ -186,7 +188,8 @@ node
             echo "Listing contents and running terraform validate command"
             sh 'ls -al'
         }*/
-        dir("${params.github_repo}/${params.github_repo_path}"){
+        dir("${params.github_repo}/${params.github_repo_path}")
+        {
             echo "testing if it is changing directory"
             echo "${pwd()}"
           /*  sh """
@@ -196,11 +199,8 @@ node
         }*/
 
           //terraform validate -var-file="{params.github_repo_path}/terraform.tfvars"
-
-
-
-
-     }
+        }
+    }
 
 
   /*
