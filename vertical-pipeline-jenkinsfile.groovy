@@ -27,7 +27,7 @@ node{
             for(entry in params){
               if(entry.value == null || entry.value.length() == 0)
                 {
-                    println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
+                    println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
                     currentBuild.result = 'FAILURE'
                     echo "RESULT: ${currentBuild.result}"
                     sh "exit 1"
