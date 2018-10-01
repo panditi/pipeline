@@ -215,5 +215,5 @@ def stageHeader(int stageNumber,String stageName)
 }
 def stageEnd (int stageNumber,String stageName)
 {
-    echo "END OF STAGE stageNumber : stageName."
+    echo "END OF STAGE ${stageNumber} : ${stageName}."
 }
