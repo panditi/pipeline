@@ -62,7 +62,12 @@ node{
         dir ("${pwd()}/${params.github_repo}"){
               checkout([$class: 'GitSCM', branches: [[name: "*/${params.github_repo_branch}"]],
               doGenerateSubmoduleConfigurations: false,
-              extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]],
+              extensions: [
+
+               [$class: 'CleanBeforeCheckout'],
+               [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
+
+             ],
 
               submoduleCfg: [],
               userRemoteConfigs: [[
