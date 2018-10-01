@@ -19,6 +19,8 @@ node{
             echo "Stage1:Validation"
             echo "=============================================="
             //Dislay the name/value of all parameters
+            echo "Cleaning up workspace"
+            cleanWs()
             echo "Github Org: ${params.github_org}"
             echo "Github Repo: ${params.github_repo}"
             echo "Github Repo Path: ${params.github_repo_path}"
