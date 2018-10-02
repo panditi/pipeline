@@ -66,30 +66,6 @@ node
                     url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                     ]]
         ])
-          /*    sh """
-         echo 'current working directory:'
-         echo \$pwd
-         echo ' '
-         echo ' '
-         echo 'current files in working directory:'
-         ls -al
-         echo ' '
-         echo ' '
-         echo 'files in the expected checkout directory:'
-         ls -la ${params.github_repo}
-         echo ' '
-         echo ' '
-         echo 'files in the expected checkout environment directory:'
-         ls -la ${params.github_repo}/env
-         echo ' '
-         echo ' '
-         echo 'files in the expected checkout selected environments directory:'
-         ls -la ${params.github_repo}/env/${params.environment}
-         echo ' '
-         echo ' '
-
-       """*/
-
         echo "Done. Cloning git repository"
         echo "End of Stage2 : Checkout SCM."
 
