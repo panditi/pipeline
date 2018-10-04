@@ -12,6 +12,7 @@ node{
     {
         github_repo = "iac-iam"
         github_repo_path = "roles"
+        //calling buildJob function to trigger job
         buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
     }
     stage("iac-network_base")
@@ -23,6 +24,7 @@ node{
     // Send notifications
     //slackSend (channel: '@me', color: colorCode, message: summary)
 }
+//triggering vertical pipeline job
 def buildJob(String github_org, String github_repo, String github_repo_path, String github_repo_branch, String environment)
 {
   def vertical_pipeline = 'vertical-github-pipeline'

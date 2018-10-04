@@ -28,11 +28,13 @@ node
         echo "Github Repo Path: ${params.github_repo_path}"
         echo "Github branch: ${params.github_repo_branch}"
         echo "Environment: ${params.environment}"
+        //check if any parameter is missing
         for(entry in params)
         {
             if(entry.value == null || entry.value.length() == 0)
             {
-                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
+                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
+                //Fail the build if any parameter is missing
                 buildFailed()
             }
             else
@@ -52,6 +54,7 @@ node
         stageHeader(2,'Checkout SCM')
         sh 'echo $PWD'
         sh "echo ${env.WORKSPACE}"
+        //cloning git repository
         checkout([
                 $class: 'GitSCM',
                 branches: [[name: "*/${params.github_repo_branch}"]],
@@ -95,18 +98,30 @@ node
             else
             {
                 echo "Github repo path: ${params.github_repo_path} doesnot exist. Please provide the valid environment"
-                //fail the build
+                //fail the build if github_repo_path doesnot exist
                 buildFailed()
             }
         }
         else
         {
             echo "Environment path: ${params.environment} doesnot exist. Please provide the valid github_repo_path"
-            //fail the build
+            //fail the build if environment doesnot exist
             buildFailed()
         }
         echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
         echo "End of Stage3 : Validate Paths."
+        dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}")
+        {
+            echo "testing if it is changing directory"
+            echo "${pwd()}"
+            def exists = fileExists 'backend.tfvars'
+
+            if (exists) {
+                echo 'Yes backend.tfvars exist'
+            } else {
+                echo 'No'
+            }
+        }
 
     }
     //a compliance stub for future use
@@ -179,6 +194,7 @@ node
         stageHeader(10,'Report')
     }*/
 }
+//function to add header to each stage
 def stageHeader(int stageNumber,String stageName)
 {
     echo "=========================================================================================================================================="
@@ -189,6 +205,7 @@ def stageEnd (int stageNumber,String stageName)
 {
     echo "END OF STAGE ${stageNumber} : ${stageName}."
 }
+//function to fail the build whenever reuirements are not met
 def buildFailed()
 {
     currentBuild.result = 'FAILURE'
