@@ -144,7 +144,12 @@ node
           echo "${pwd()}"
           sh '''
               ls
-              brew install terraform
+              cd /usr/local/src
+              wget https://releases.hashicorp.com/terraform/terraform_0.11.8_linux_amd64.zip
+              unzip terraform_0.11.8_linux_amd64.zip
+              pwd
+              mv terraform /usr/local/bin/
+              export PATH=$PATH:/terraform-path/
               terraform init
           '''
         }
