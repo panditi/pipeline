@@ -145,7 +145,6 @@ node
             echo "${pwd()}"
             sh '''
                 ls
-                sudo yum install -y zip unzip
                 wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_freebsd_amd64.zip
                 unzip terraform_0.11.8_freebsd_amd64.zip
                 sudo mv terraform /usr/local/bin/
