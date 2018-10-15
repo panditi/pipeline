@@ -5,6 +5,8 @@ def github_repo_branch = "develop"
 def environment = "sandbox"
 def s3_bucket = ""
 def s3_key = ""
+def account_no = ""
+def account_alias = ""
 
 node{
     echo "${pwd()}"
