@@ -1,5 +1,3 @@
-
-
 node
 {
     //defining the parameters
@@ -33,7 +31,7 @@ node
         {
             if(entry.value == null || entry.value.length() == 0)
             {
-                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter."
+                println "The parameter missing is: " + entry.key + ". Please provide a value for parameter.."
                 //Fail the build if any parameter is missing
                 buildFailed()
             }
@@ -110,6 +108,18 @@ node
         }
         echo "Done. Validating paths of ${params.environment} and ${params.github_repo_path}"
         echo "End of Stage3 : Validate Paths."
+        dir("${params.github_repo}/env/${params.environment}/${params.github_repo_path}")
+        {
+            echo "testing if it is changing directory"
+            echo "${pwd()}"
+            def exists = fileExists 'backend.tfvars'
+
+            if (exists) {
+                echo 'Yes backend.tfvars exist'
+            } else {
+                echo 'No'
+            }
+        }
 
     }
     //a compliance stub for future use
@@ -128,7 +138,6 @@ node
     stage('Terraform init')
     {
         stageHeader(6,'Terraform init')
-        echo "${pwd}"
         dir("${params.github_repo}/${params.github_repo_path}")
         {
             echo "testing if it is changing directory"
@@ -166,7 +175,6 @@ node
 
 
   /*
-
     //execute the terraform plan
     stage('Terraform Plan')
     {
