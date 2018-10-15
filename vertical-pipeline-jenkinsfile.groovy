@@ -145,11 +145,17 @@ node
             echo "${pwd()}"
             sh '''
                 ls
-                ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
-                brew install terraform
+                sudo yum install -y zip unzip
+                wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_freebsd_amd64.zip
+                unzip terraform_0.11.8_freebsd_amd64.zip
+                sudo mv terraform /usr/local/bin/
                 terraform -version
-                terraform init -backend-config=terraform.tfvars
             '''
+                // ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+                // brew install terraform
+                // terraform -version
+                // terraform init -backend-config=terraform.tfvars
+
 
 
             /*sh """
