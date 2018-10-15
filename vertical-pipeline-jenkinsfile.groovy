@@ -145,7 +145,7 @@ node
           sh '''
               ls
               cd /usr/local/src
-              wget https://releases.hashicorp.com/terraform/terraform_0.11.8_linux_amd64.zip
+              wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
               unzip terraform_0.11.8_linux_amd64.zip
               pwd
               mv terraform /usr/local/bin/
