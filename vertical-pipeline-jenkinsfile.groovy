@@ -138,6 +138,7 @@ node
     stage('Terraform init')
     {
         stageHeader(6,'Terraform init')
+        echo "${pwd()}"      
         dir("${params.github_repo}/${params.github_repo_path}")
         {
             echo "testing if it is changing directory"
