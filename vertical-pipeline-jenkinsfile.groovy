@@ -147,7 +147,6 @@ node
                 ls
                 wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_freebsd_amd64.zip
                 unzip terraform_0.11.8_freebsd_amd64.zip
-                sudo mv terraform /usr/local/bin/
                 terraform -version
             '''
                 // ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
