@@ -139,11 +139,16 @@ node
     {
         stageHeader(6,'Terraform init')
         echo "${pwd()}"
-        dir("${params.github_repo}/${params.github_repo_path}")
+        dir("${params.github_repo}/env/${params.environment}")
         {
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh 'ls'
+            sh '''
+                ls
+                terraform init -backend-config=terraform.tfvars
+            '''
+
+
             /*sh """
                 ls
                 terraform init -backend-config=../env/"${params.environment}"/backend.tfvars -backend-config=../env/"${params.environment}"/"${params.github_repo_path}"/backend.tfvars
