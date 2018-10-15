@@ -139,11 +139,12 @@ node
     {
         stageHeader(6,'Terraform init')
         echo "${pwd()}"
-        dir("${params.github_repo}/env/${params.github_repo_path}")
+        dir("${params.github_repo}/${params.github_repo_path}")
         {
           echo "${pwd()}"
           sh '''
               ls
+              brew install terraform
               terraform init
           '''
         }
