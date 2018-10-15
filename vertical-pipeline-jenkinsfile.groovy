@@ -145,6 +145,9 @@ node
             echo "${pwd()}"
             sh '''
                 ls
+                /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+                brew install terraform
+                terraform -version
                 terraform init -backend-config=terraform.tfvars
             '''
 
