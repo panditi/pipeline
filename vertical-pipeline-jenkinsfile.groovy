@@ -139,16 +139,25 @@ node
     {
         stageHeader(6,'Terraform init')
         echo "${pwd()}"
+        dir("${params.github_repo}/env/${params.github_repo_path}")
+        {
+          echo "${pwd()}"
+          sh '''
+              ls
+              terraform init
+          '''
+        }
         dir("${params.github_repo}/env/${params.environment}")
         {
             echo "testing if it is changing directory"
             echo "${pwd()}"
-            sh '''
-                ls
-                wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_freebsd_amd64.zip
-                unzip terraform_0.11.8_freebsd_amd64.zip
-                terraform -version
-            '''
+            //Remove the terraform state file so we always start from a clean state
+            // if (fileExists(".terraform/terraform.tfstate")) {
+            // sh "rm -rf .terraform/terraform.tfstate"
+            // }
+            // sh '''
+            //
+            // '''
                 // ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
                 // brew install terraform
                 // terraform -version
