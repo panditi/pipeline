@@ -142,7 +142,7 @@ node
         dir("${params.github_repo}/${params.github_repo_path}")
         {
           echo "${pwd()}"
-          sh '''
+          /*sh '''
               ls
               cd /usr/local/src
               wget https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip
@@ -154,7 +154,7 @@ node
               mv terraform /usr/local/bin/
               export PATH=$PATH:/terraform-path/
               terraform init
-          '''
+          '''*/
         }
         dir("${params.github_repo}/env/${params.environment}")
         {
@@ -185,12 +185,6 @@ node
    {
         stageHeader(7,'Lint')
         echo "${pwd()}"
-        /*dir("${params.github_repo}/env/${params.environment}"){
-            echo "testing if it is changing directory"
-            echo "${pwd()}"
-            echo "Listing contents and running terraform validate command"
-            sh 'ls -al'
-        }*/
         dir("${params.github_repo}/${params.github_repo_path}")
         {
             echo "testing if it is changing directory"
