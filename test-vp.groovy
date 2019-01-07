@@ -49,23 +49,8 @@ timestamps {
                             stageHeader(2,'Checkout SCM')
                             sh 'echo $PWD'
                             sh "echo ${env.WORKSPACE}"
-                            //cloning git repository
-                            checkout([
-                                    $class: 'GitSCM',
-                                    branches: [[name: "*/${params.github_repo_branch}"]],
-                                    doGenerateSubmoduleConfigurations: false,
-                                    extensions: [
-                                            [$class: 'CleanBeforeCheckout'],
-                                            [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
-                                    ],
-                                    submoduleCfg: [],
-                                    userRemoteConfigs: [[
-                                                                credentialsId: 'github_token',
-                                                                url: "https://github.com/${params.github_org}/${params.github_repo}.git"
-                                                        ]]
-                            ])
-                            echo "Done. Cloning git repository"
-                            stageEnd(2, 'Checkout SCM')
+                            git_checkout()
+                            
                         }
                 stage('Validate Paths')
                         {
@@ -133,13 +118,12 @@ timestamps {
                                     {
                                         echo "${pwd()}"
                                         sh """
-                                        set +x
                                         pwd
                                         ls
                                         
                                         terraform -version
                                         which terraform
-                                        if [ -e .terraform/terraform.tfstate ]
+                                        if [ -e .terraform/terraform.tfstate]
                                         then
                                             echo "File exist."
                                             rm -rf .terraform/terraform.tfstate
@@ -152,7 +136,7 @@ timestamps {
                                     """
                                     }
                         }
-                                        //execute the terraform plan
+                //execute the terraform plan
                 stage('Terraform Plan')
                         {
                             stageHeader(8,'Terraform Plan')
@@ -162,7 +146,6 @@ timestamps {
                                         echo "testing if it is changing directory"
                                         echo "${pwd()}"
                                         sh """
-                                        set +x
                                         pwd
                                         ls
                                         which terraform
@@ -172,7 +155,7 @@ timestamps {
                                         """
                                     }
                         }
-                        //execute the terraform apply
+                //execute the terraform apply
                 stage('Terraform Apply')
                         {
                             stageHeader(9,'Terraform Apply')
@@ -182,7 +165,6 @@ timestamps {
                                         echo "testing if it is changing directory"
                                         echo "${pwd()}"
                                         sh """
-                                        set +x
                                         pwd
                                         ls
                                         which terraform
@@ -211,4 +193,25 @@ def buildFailed()
     currentBuild.result = 'FAILURE'
     echo "RESULT: ${currentBuild.result}"
     sh "exit 1"
+}
+def git_checkout()
+{
+    //cloning git repository
+    checkout([
+            $class: 'GitSCM',
+            branches: [[name: "*/${params.github_repo_branch}"]],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [
+                    [$class: 'CleanBeforeCheckout'],
+                    [$class: 'RelativeTargetDirectory', relativeTargetDir: "${params.github_repo}"]
+            ],
+            submoduleCfg: [],
+            userRemoteConfigs: [[
+                                        credentialsId: 'github_token',
+                                        url: "https://github.com/${params.github_org}/${params.github_repo}.git"
+                                ]]
+    ])
+    sleep 2
+    echo "Done. Cloning git repository"
+    stageEnd(2, 'Checkout SCM')
 }
