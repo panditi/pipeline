@@ -1,7 +1,7 @@
 def github_org = "opploans"
 def github_repo = ""
 def github_repo_path = ""
-def github_repo_branch = "develop"
+def github_repo_branch = "master"
 def environment = "sandbox1"
 def s3_bucket = ""
 def s3_key = ""
@@ -14,19 +14,6 @@ timestamps {
                     github_repo = "iac-iam"
                     github_repo_path = "roles"
                     //calling buildJob function to trigger job
-                    buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
-                }
-        stage("iac-iam-kms")
-                {
-                    github_repo = "iac-iam"
-                    github_repo_path = "kms"
-                    //calling buildJob function to trigger job
-                    buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
-                }
-        stage("iac-network-network-base")
-                {
-                    github_repo = "iac-network"
-                    github_repo_path = "network-base"
                     buildJob(github_org, github_repo, github_repo_path, github_repo_branch, environment)
                 }
     }
