@@ -46,6 +46,15 @@ timestamps {
 
                 stage('Checkout SCM')
                         {
+                            echo "${pwd()}"
+                            sh '''
+                            pwd
+                            ls
+                            cd ..
+                            pwd
+                            ls
+                            '''
+                            
                             readFile '../pipeline.groovy'
                             echo "${env.FILENAME}"
                             git_checkout()
