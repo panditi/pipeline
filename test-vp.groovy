@@ -133,12 +133,13 @@ timestamps {
                                     {
                                         echo "${pwd()}"
                                         sh """
+                                        set +x
                                         pwd
                                         ls
                                         
                                         terraform -version
                                         which terraform
-                                        if [ -e .terraform/terraform.tfstate]
+                                        if [ -e .terraform/terraform.tfstate ]
                                         then
                                             echo "File exist."
                                             rm -rf .terraform/terraform.tfstate
@@ -161,6 +162,7 @@ timestamps {
                                         echo "testing if it is changing directory"
                                         echo "${pwd()}"
                                         sh """
+                                        set +x
                                         pwd
                                         ls
                                         which terraform
@@ -180,6 +182,7 @@ timestamps {
                                         echo "testing if it is changing directory"
                                         echo "${pwd()}"
                                         sh """
+                                        set +x
                                         pwd
                                         ls
                                         which terraform
