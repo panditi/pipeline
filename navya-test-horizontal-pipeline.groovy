@@ -21,7 +21,7 @@ timestamps {
 //triggering vertical pipeline job
 def buildJob(String github_org, String github_repo, String github_repo_path, String github_repo_branch, String environment)
 {
-    def vertical_pipeline = 'test-vp'
+    def vertical_pipeline = 'navya-test-vertical-pipeline.groovy'
     build job: vertical_pipeline, parameters: [
             [$class: 'StringParameterValue', name: 'github_org', value: github_org],
             [$class: 'StringParameterValue', name: 'github_repo', value: github_repo],
