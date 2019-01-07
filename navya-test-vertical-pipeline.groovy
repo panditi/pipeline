@@ -46,7 +46,7 @@ timestamps {
 
                 stage('Checkout SCM')
                         {
-                            sh 'env.FILENAME = readFile 'pipeline.groovy''
+                            script readFileFromWorkspace('pipeline.groovy') + workflow
                             echo "${env.FILENAME}"
                             git_checkout()
 
