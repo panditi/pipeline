@@ -34,7 +34,8 @@ timestamps {
                              //echo "entered iac-cicd/iac and listing contents"
                              //ls
                              //'''
-                            readFile '../functions.groovy'    
+                            script readFileFromWorkspace('pipeline.groovy') + workflow
+                            //readFile '../functions.groovy'    
                             function1()
                           
                             //check if any parameter is missing
