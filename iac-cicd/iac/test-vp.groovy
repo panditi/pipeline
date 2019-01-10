@@ -34,7 +34,7 @@ timestamps {
                              //echo "entered iac-cicd/iac and listing contents"
                              //ls
                              //'''
-                            readFile 'functions.groovy'    
+                            readFile '../functions.groovy'    
                             function1()
                           
                             //check if any parameter is missing
