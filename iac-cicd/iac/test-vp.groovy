@@ -19,18 +19,23 @@ timestamps {
                             stageHeader(1,'Validation')
                             //Dislay the name/value of all parameters
                             echo "${pwd()}"
-                            echo " listing contents"
-                            ls -al
-                            echo "outside dir"
-                            dir("${pwd()}/../iac-cicd/iac/")
-                            {
-                                echo "entered dir"
-                                echo "${pwd()}"
-                                echo "reading functions file"
-                            readFile 'functions.groovy'
-                                echo "calling functions file"
-                            function1()
                             
+                            //ls -al
+                            //echo "outside dir"
+                            sh '''
+                             echo "current directory"
+                             pwd
+                             echo "listing contents"
+                             ls
+                             cd ../iac-cicd
+                             echo "entered iac-cicd and listing contents"
+                             ls
+                             cd ../iac-cicd/iac
+                             echo "entered iac-cicd/iac and listing contents"
+                             ls
+                             '''
+                             
+                          
                             //check if any parameter is missing
                             for(entry in params)
                             {
@@ -44,7 +49,7 @@ timestamps {
                                 {
                                     //println ""
                                 }
-                            }
+                            
                             }
                             echo "All parameters are provided."
 
