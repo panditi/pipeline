@@ -1,3 +1,9 @@
+node{
+echo "In functions file"
+
+}
+
+
 def function1(){
 echo "Github Org: ${params.github_org}"
 echo "Github Repo: ${params.github_repo}"
