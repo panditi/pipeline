@@ -18,8 +18,17 @@ timestamps {
                         {
                             stageHeader(1,'Validation')
                             //Dislay the name/value of all parameters
-                            readFile 'fucntions.groovy'
+                            echo "${pwd()}"
+                            echo "outside dir"
+                            dir("${pwd()}/..")
+                            {
+                                echo "entered dir"
+                                echo "${pwd()}"
+                                echo "reading functions file"
+                            readFile 'functions.groovy'
+                                echo "calling functions file"
                             function1()
+                            
                             //check if any parameter is missing
                             for(entry in params)
                             {
@@ -33,6 +42,7 @@ timestamps {
                                 {
                                     //println ""
                                 }
+                            }
                             }
                             echo "All parameters are provided."
 
