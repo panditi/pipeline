@@ -22,19 +22,20 @@ timestamps {
                             
                             //ls -al
                             //echo "outside dir"
-                            sh '''
-                             echo "current directory"
-                             pwd
-                             echo "listing contents"
-                             ls
-                             cd ../iac-cicd
-                             echo "entered iac-cicd and listing contents"
-                             ls
-                             cd ../iac-cicd/iac
-                             echo "entered iac-cicd/iac and listing contents"
-                             ls
-                             '''
-                             
+                            //sh '''
+                             //echo "current directory"
+                             //pwd
+                             //echo "listing contents"
+                             //ls
+                             //cd ../iac-cicd
+                             //echo "entered iac-cicd and listing contents"
+                             //ls
+                             //cd ../iac-cicd/iac
+                             //echo "entered iac-cicd/iac and listing contents"
+                             //ls
+                             //'''
+                            readFile 'functions.groovy'    
+                            function1()
                           
                             //check if any parameter is missing
                             for(entry in params)
