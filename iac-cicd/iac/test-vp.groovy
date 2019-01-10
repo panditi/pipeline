@@ -1,6 +1,7 @@
 timestamps {
     node("${params.environment}")
             {
+                load('functions.groovy')
                 //defining the parameters
                 parameters
                         {
@@ -34,7 +35,7 @@ timestamps {
                              //echo "entered iac-cicd/iac and listing contents"
                              //ls
                              //'''
-                            script readFileFromWorkspace('functions.groovy') + workflow
+                            
                             //readFile '../functions.groovy'    
                             function1()
                           
