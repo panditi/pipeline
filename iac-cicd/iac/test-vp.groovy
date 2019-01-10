@@ -20,7 +20,7 @@ timestamps {
                             //Dislay the name/value of all parameters
                             echo "${pwd()}"
                             echo "outside dir"
-                            dir("${pwd()}/..")
+                            dir("${pwd()}/../iac-cicd/iac/")
                             {
                                 echo "entered dir"
                                 echo "${pwd()}"
