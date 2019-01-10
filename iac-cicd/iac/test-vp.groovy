@@ -1,7 +1,7 @@
 timestamps {
     node("${params.environment}")
             {
-                load('functions.groovy')
+                load('../functions.groovy')
                 //defining the parameters
                 parameters
                         {
