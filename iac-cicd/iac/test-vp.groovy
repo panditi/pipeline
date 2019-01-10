@@ -19,6 +19,8 @@ timestamps {
                             stageHeader(1,'Validation')
                             //Dislay the name/value of all parameters
                             echo "${pwd()}"
+                            echo " listing contents"
+                            ls -al
                             echo "outside dir"
                             dir("${pwd()}/../iac-cicd/iac/")
                             {
