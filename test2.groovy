@@ -5,4 +5,4 @@ def testFunction()
     echo "Successfully called function in different file"
 }
 
-return
+return this
