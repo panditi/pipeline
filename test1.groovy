@@ -11,7 +11,15 @@ node('poc1'){
     sleep 2
     echo "After calling git checkout function"
     echo "listing contents in git repo"
-    sh 'ls'
+    sh """
+      echo "listing contents in current folder after checkout"
+      ls
+      echo "cd into pipeline repo"
+      cd pipeline
+      echo "listing contents in pipeline repo"
+      ls
+      """
+    
     echo "calling test function present in different file but in same repo"
     //testFunction()
     //echo "after calling test function"
