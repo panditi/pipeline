@@ -1,7 +1,7 @@
 //Calling another function
-def github_org = sainavya5
-def github_repo = pipeline
-def github_repo_branch = master
+def github_org = 'sainavya5'
+def github_repo = 'pipeline'
+def github_repo_branch = 'master'
 
 node('sandbox1){
   stage("Calling function"){
