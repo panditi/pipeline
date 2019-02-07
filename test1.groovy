@@ -21,10 +21,11 @@ node('poc1'){
       echo "Displaying contents in test1.groovy file"
       cat test1.groovy
       """
+    sh 'pwd'
     
     echo "calling test function present in different file but in same repo"
-    //testFunction()
-    //echo "after calling test function"
+    testFunction()
+    echo "after calling test function"
   }
 }
      
