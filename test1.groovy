@@ -20,13 +20,22 @@ node('poc1'){
       ls
       """
     sh 'pwd'
-    
+    def rootDir= pwd()
+    println("Current Directory: " + rootDir)
+    // point to exact source file
+    def example = load "${rootDir}/test2.groovy"
     echo "calling test function present in different file but in same repo"
-    sh 'ls'
-    load 'pipeline/test2.groovy'
-    sh 'ls'
-    testFunction()
+    example.testFunction()
     echo "after calling test function"
+    
+    
+    
+    //echo "calling test function present in different file but in same repo"
+    //sh 'ls'
+    //load 'pipeline/test2.groovy'
+    //sh 'ls'
+    //testFunction()
+    //echo "after calling test function"
   }
 }
      
