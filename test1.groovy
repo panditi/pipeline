@@ -8,8 +8,11 @@ node('poc1'){
   stage("Calling function"){
     echo "calling git checkout function present in same file"
     git_checkout()
+    sleep 2
     echo "After calling git checkout function"
-    //echo "calling test function present in different file but in same repo"
+    echo "listing contents in git repo"
+    sh 'ls'
+    echo "calling test function present in different file but in same repo"
     //testFunction()
     //echo "after calling test function"
   }
