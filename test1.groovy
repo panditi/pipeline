@@ -22,7 +22,9 @@ node('poc1'){
     sh 'pwd'
     
     echo "calling test function present in different file but in same repo"
+    sh 'ls'
     load 'pipeline/test2.groovy'
+    sh 'ls'
     testFunction()
     echo "after calling test function"
   }
@@ -47,4 +49,7 @@ def git_checkout()
     ])
     echo "Done. Cloning git repository"
 }
-
+def testFunction()
+{
+    echo "Successfully called function in different file"
+}
