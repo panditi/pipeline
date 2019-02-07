@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 //Calling another function
 def github_org = 'sainavya5'
 def github_repo = 'pipeline'
