@@ -1,6 +1,5 @@
 def git_checkout()
 {
-    stageHeader(2,'Checkout SCM')
     //cloning git repository
     checkout([
             $class: 'GitSCM',
@@ -16,7 +15,5 @@ def git_checkout()
                                         url: "https://github.com/${params.github_org}/${params.github_repo}.git"
                                 ]]
     ])
-    sleep 2
     echo "Done. Cloning git repository"
-    stageEnd(2, 'Checkout SCM')
 }
