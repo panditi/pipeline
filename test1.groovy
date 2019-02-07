@@ -24,6 +24,7 @@ node('poc1'){
     sh 'pwd'
     
     echo "calling test function present in different file but in same repo"
+    load 'pipeline/test2.groovy'
     testFunction()
     echo "after calling test function"
   }
