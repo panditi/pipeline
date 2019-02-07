@@ -18,6 +18,8 @@ node('poc1'){
       cd pipeline
       echo "listing contents in pipeline repo"
       ls
+      echo "Displaying contents in test1.groovy file"
+      cat test1.groovy
       """
     
     echo "calling test function present in different file but in same repo"
