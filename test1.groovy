@@ -49,7 +49,3 @@ def git_checkout()
     ])
     echo "Done. Cloning git repository"
 }
-def testFunction()
-{
-    echo "Successfully called function in different file"
-}
