@@ -51,7 +51,12 @@ ansiColor('xterm') {
             def rootDir= pwd()
             println("Current Directory: " + rootDir)
             // point to exact source file
-            def example = load "${rootDir}/odin-cicd/iac/jenkins-as-code/pipeline/pipeline-functions/functions.groovy"
+            def example = load "${rootDir}/odin-cicd/iac/jenkins-as-code/pipeline/pipeline-horizontal"
+            sh """
+            pwd
+            ls -al
+           
+            """
             echo "calling all functions present in different file but in same repo"
             example.stageBegin()
             example.stageEnd()
