@@ -4,7 +4,7 @@ def github_org = 'sainavya5'
 def github_repo = 'pipeline'
 def github_repo_branch = 'master'
 
-node('poc1'){
+node('test1'){
   stage("Calling function"){
     echo "calling git checkout function present in same file"
     git_checkout()
